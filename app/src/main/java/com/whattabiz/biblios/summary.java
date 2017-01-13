@@ -34,9 +34,12 @@ import java.util.Map;
 
 public class summary extends AppCompatActivity {
 
+    public static final String TOTAL_AMOUNT_KEY = "TOTAL_AMOUNT";
     public static String[] ADDRESS = new String[3];
     private final String URL = "http://whattabiz.com/Biblios/androidorders.php";
     private final String KEY = "WhattabizBiblios";
+    /* Promo Request Code */
+    private final int PROMO_REQUEST_CODE = 13;
     private int sum;
     private TextView total;
     private RecyclerView recyclerView;
@@ -130,9 +133,22 @@ public class summary extends AppCompatActivity {
                 /* Send the current Total price and calculate the discount amount from promo codes and return back
                  * the Total amount and set it to the TotalAmount TextView */
                 Intent promoIntent = new Intent(summary.this, PromoActivity.class);
-                //startActivityForResult();
+                promoIntent.putExtra(TOTAL_AMOUNT_KEY, total.getText());
+                startActivityForResult(promoIntent, PROMO_REQUEST_CODE);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        /* Check if the activity was PromoCodeActivity */
+        if (requestCode == PROMO_REQUEST_CODE) {
+            /* If Activity called was successfully returned */
+            if (resultCode == RESULT_OK) {
+                total.setText(data.getStringExtra(TOTAL_AMOUNT_KEY));
+            }
+        }
     }
 
     //
