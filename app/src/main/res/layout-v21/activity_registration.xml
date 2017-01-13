@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_white"
+    tools:context="com.whattabiz.bibliosbookpoint.ui.RegistrationActivity">
+
+    <RelativeLayout
+        android:id="@+id/layout_container"
+        android:layout_width="0dp"
+        android:layout_height="310dp"
+        android:background="@drawable/bg_gradient"
+        android:elevation="2dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1">
+
+        <ImageView
+            android:id="@+id/img_app_icon"
+            android:layout_width="240dp"
+            android:layout_height="150dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="49dp"
+            android:elevation="4dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/biblios_app_logo"/>
+
+        <ImageView
+            android:id="@+id/img_bibtext"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/img_app_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="11dp"
+            android:elevation="4dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/biblios_text"/>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/btn_login"
+        android:elevation="0dp"
+        android:stateListAnimator="@null"
+        android:text="@string/login"
+        android:textColor="@color/colorPrimary"
+        android:transitionName="@string/shared_elem_transtion_login_btn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_container"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"/>
+
+    <Button
+        android:id="@+id/btn_signup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="78dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="83dp"
+        android:background="@drawable/btn_signup"
+        android:elevation="0dp"
+        android:stateListAnimator="@null"
+        android:text="@string/signup"
+        android:textColor="@color/md_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.39"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_login"
+        app:layout_constraintVertical_bias="0.050000012"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1"/>
+
+</android.support.constraint.ConstraintLayout>
