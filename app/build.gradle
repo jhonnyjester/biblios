@@ -7,7 +7,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
     defaultConfig {
-        applicationId "com.whattabiz.biblios"
+        applicationId "com.whattabiz.bibliosbookpoint"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 8

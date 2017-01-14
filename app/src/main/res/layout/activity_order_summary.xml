@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_splash"
-    tools:context="com.whattabiz.biblios.OrderSummary">
+    tools:context="com.whattabiz.bibliosbookpoint.OrderSummary">
 
     <TextView
         android:id="@+id/order_summary_header_text"

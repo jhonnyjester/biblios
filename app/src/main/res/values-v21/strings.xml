@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="summary_order_text">Order Summary</string>
+    <string name="current_membership_text">Current Membership</string>
 </resources>

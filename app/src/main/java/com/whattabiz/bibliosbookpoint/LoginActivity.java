@@ -1,4 +1,4 @@
-package com.whattabiz.biblios;
+package com.whattabiz.bibliosbookpoint;
 
 import android.content.Context;
 import android.content.Intent;

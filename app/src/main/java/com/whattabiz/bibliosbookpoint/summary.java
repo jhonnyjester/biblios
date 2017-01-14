@@ -1,4 +1,4 @@
-package com.whattabiz.biblios;
+package com.whattabiz.bibliosbookpoint;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -41,7 +41,10 @@ public class summary extends AppCompatActivity {
     /* Promo Request Code */
     private final int PROMO_REQUEST_CODE = 13;
     private int sum;
+
+    // TODO: Request Memership Percentage Discount
     private TextView total;
+
     private RecyclerView recyclerView;
     private checkoutAdapter mAdapter;
     private Button placeOrder, cancleOrder, promoCode;
@@ -129,7 +132,6 @@ public class summary extends AppCompatActivity {
         promoCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // todo: check PROMO codes
                 /* Send the current Total price and calculate the discount amount from promo codes and return back
                  * the Total amount and set it to the TotalAmount TextView */
                 Intent promoIntent = new Intent(summary.this, PromoActivity.class);

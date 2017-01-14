@@ -1,4 +1,4 @@
-package com.whattabiz.biblios;
+package com.whattabiz.bibliosbookpoint;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
