@@ -10,8 +10,8 @@ android {
         applicationId "com.whattabiz.bibliosbookpoint"
         minSdkVersion 21
         targetSdkVersion 25
-        versionCode 8
-        versionName "3.5.1"
+        versionCode 9
+        versionName "3.5.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

@@ -58,6 +58,7 @@ public class MembershipMainActivity extends AppCompatActivity implements View.On
                 .cancelable(false)
                 .build();
 
+
         /*SharedPreferences shared = getSharedPreferences("Membership_Status", Context.MODE_PRIVATE);
 
         // get the total books purchased from the orders
