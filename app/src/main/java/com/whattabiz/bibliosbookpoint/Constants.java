@@ -9,4 +9,8 @@ public class Constants {
 
 
     public static final String MEMBERSHIP_REQUEST_URL = "http://bibliosworld.com/Biblios/androidmembership.php?key=WhattabizBiblios&user_id=";
+
+
+    public static final int FirebaseMessagingRequestCode = 14;
+
 }

@@ -8,7 +8,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.Menu;
@@ -39,6 +38,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -51,7 +51,6 @@ public class UserDetails extends AppCompatActivity {
 
     // unique android Id
     // Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)
-    private TelephonyManager telephonyManager;
     private ImageView topicon;
     private Spinner cource, sem, prof;
     private Button submit;
@@ -66,7 +65,6 @@ public class UserDetails extends AppCompatActivity {
     private boolean isProffesionValid = false;
     private boolean isProfessionSelected = false;
     private boolean isPasswordValid = false;
-    private String ANDROID_ID;
     private List<String> cources;
     private List<String> profession;
     private List<String> sems;
@@ -147,6 +145,9 @@ public class UserDetails extends AppCompatActivity {
         dataAdapter0 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, profession);
         dataAdapter0.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         prof.setAdapter(dataAdapter0);
+
+        LinkedList<Membership> linkedList = new LinkedList<>();
+        linkedList.getFirst();
 
         // Profession Selection Adapter
         prof.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -474,14 +475,12 @@ public class UserDetails extends AppCompatActivity {
     }
 
     private void gotoNext() {
-        // rotate icon
         topicon.startAnimation(iconRotate);
-        // after details activity go to MemberShipInfo ONLY ONCE
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(getApplicationContext(), NavigationHomeActivity.class));
+                startActivity(new Intent(getApplicationContext(), SplashPageActivity.class));
                 UserDetails.this.finish();
             }
         }, 300);

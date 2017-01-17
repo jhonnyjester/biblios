@@ -14,15 +14,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SettingsFragment extends Fragment {
 
+    private static final String DELETE_TOKEN_URL = "http://bibliosworld.com/Biblios/deleteToken.php";
     private static final String MEMBERSHIP_URL = "http://bibliosworld.com/Biblios/androidmembership.php?key=WhattabizBiblios";
     private CardView accountCardView, notifyCardView, clearCardView, aboutCardView;
     private View.OnClickListener mClickListener;
@@ -70,7 +79,7 @@ public class SettingsFragment extends Fragment {
                                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        deleteSharedPrefs();
+                                        logOut();
                                     }
                                 }).setNegativeButton("No", new DialogInterface.OnClickListener() {
                             @Override
@@ -137,22 +146,59 @@ public class SettingsFragment extends Fragment {
      * Removes SharedPrefs
      * Assigns all strings to ""
      */
-    private void deleteSharedPrefs() {
-        SharedPreferences detailsPrefs = getActivity().getSharedPreferences("BibliosUserDetails", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor;
-        editor = detailsPrefs.edit();
-        editor.remove("Email");
-        editor.remove("Name");
-        editor.remove("College Name");
-        editor.remove("Course");
-        editor.remove("Sem");
-        editor.remove("Membership");
-        editor.remove("phone");
-        editor.apply();
+    private void logOut() {
+        StringRequest deleteTokenRequest = new StringRequest(Request.Method.POST, DELETE_TOKEN_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("RESPONSE", response);
+
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    if (jsonObject.getInt("status") == 1) {
+                        SharedPreferences detailsPrefs = getActivity().getSharedPreferences("BibliosUserDetails", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor;
+                        editor = detailsPrefs.edit();
+                        editor.remove("Email");
+                        editor.remove("Name");
+                        editor.remove("College Name");
+                        editor.remove("Course");
+                        editor.remove("Sem");
+                        editor.remove("Membership");
+                        editor.remove("phone");
+                        editor.remove("user_id");
+                        editor.apply();
+
+                        goNext();
+                    } else {
+                        Toast.makeText(getContext(), "Failed To Log Out!", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), "Failed To Log Out!", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", Store.user_id);
+                return params;
+            }
+        };
+
+        MySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(deleteTokenRequest);
+    }
+
+    private void goNext() {
         Toast.makeText(getActivity().getApplicationContext(), "Logged out Successfully", Toast.LENGTH_SHORT).show();
         getActivity().finish();
         startActivity(new Intent(getActivity().getApplicationContext(), RegistrationActivity.class));
     }
+
 
     @Override
     public void onStart() {

@@ -90,14 +90,15 @@ public class RequestActivity extends AppCompatActivity {
         final MaterialDialog dialog = materialDialog.build();
 
         dialog.show();
-        String uid, cid, bname, bAname;
+        String uid, cid, bname, bAname, bookCategory;
         // i don't know why, but still being extra cautious
         uid = Store.user_id;
         cid = String.valueOf(1);
         bAname = til_req_author.getEditText().getText().toString();
         bname = til_req_book.getEditText().getText().toString();
+        bookCategory = til_req_categ.getEditText().getText().toString();
         StringRequest request = new StringRequest(REQUEST_BOOK_URL + "?bname=" + bname
-                + "&author=" + bAname + "&user_id=" + uid, new Response.Listener<String>() {
+                + "&author=" + bAname + "&user_id=" + uid + "&book_cat=" + bookCategory, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d("Response", response);

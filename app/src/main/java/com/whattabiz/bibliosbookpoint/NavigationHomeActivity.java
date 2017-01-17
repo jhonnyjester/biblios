@@ -3,6 +3,7 @@ package com.whattabiz.bibliosbookpoint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.os.AsyncTaskCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -52,10 +54,6 @@ public class NavigationHomeActivity extends AppCompatActivity
     @Override
     protected void onStart() {
         super.onStart();
-        // get user_id
-        Store.user_id = getSharedPreferences("BibliosUserDetails", Context.MODE_PRIVATE)
-                .getString("user_id", "");
-        Log.i("user_id from navig", Store.user_id);
     }
 
     @Override
@@ -66,11 +64,26 @@ public class NavigationHomeActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         this.setTitle("Home");
 
-        // create a new FirebaseInstance
-        //   MyFirebaseInstanceIDService myFirebaseInstanceIDService = new MyFirebaseInstanceIDService();
-        //   Log.i("FCM TOKEN", FirebaseInstanceId.getInstance().getToken());
-        //   MyFirebaseMessagingService messagingService = new MyFirebaseMessagingService();
-        /* Add Search View */
+
+        // get user_id
+        AsyncTaskCompat.executeParallel(new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                Store.user_id = getSharedPreferences("BibliosUserDetails", Context.MODE_PRIVATE)
+                        .getString("user_id", "");
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                Log.d("USER ID", Store.user_id);
+            }
+        });
+
+
+
+
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
         addSearchView();
         if (Store.bookCategories.isEmpty()) {

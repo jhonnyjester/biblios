@@ -16,14 +16,20 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Replacement of HomePage in HomeActivty
@@ -35,6 +41,7 @@ public class HomeFragment extends Fragment {
     private final String topBooks = "http://bibliosworld.com/Biblios/androidtop.php";
     private final String soonUrl = "http://bibliosworld.com/Biblios/androidComingSoon.php?key=WhattabizBiblios";
     private final String bestSellers = "http://bibliosworld.com/Biblios/androidbestseller.php";
+    private final String FIREBASE_TOKEN_URL = "http://bibliosworld.com/Biblios/getTokens.php";
 
     private ScrollView contentMainScrollView;
     private RecyclerView rvTop;
@@ -50,11 +57,45 @@ public class HomeFragment extends Fragment {
     private String rupee;
 
     public HomeFragment() {
+
+    }
+
+
+    private void sendFirebaseToken() {
+        // send Firebase Token to Backend
+        Log.v("Token", FirebaseInstanceId.getInstance().getToken());
+        Log.e("UID", Store.user_id);
+
+        StringRequest tokenRequest = new StringRequest(Request.Method.POST, FIREBASE_TOKEN_URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("RESPONSE TOKEN", response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("key", Constants.BIBLIOS_KEY);
+                params.put("token", FirebaseInstanceId.getInstance().getToken());
+                params.put("user_id", Store.user_id);
+                return params;
+            }
+        };
+
+        MySingleton.getInstance(getActivity().getApplicationContext()).addToRequestQueue(tokenRequest);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // send firebase token
+        sendFirebaseToken();
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
@@ -63,6 +104,8 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
         sliderPager = (ViewPager) view.findViewById(R.id.slider_card_pager);
         contentMainScrollView = (ScrollView) view.findViewById(R.id.content_main_scrollview);
         contentMainScrollView.setSmoothScrollingEnabled(true);
@@ -349,6 +392,11 @@ public class HomeFragment extends Fragment {
         rvSuggestedBooks.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
     private class CardSliderAdapter extends FragmentStatePagerAdapter {
         // Default Constructor
         CardSliderAdapter(FragmentManager fm) {
@@ -358,12 +406,13 @@ public class HomeFragment extends Fragment {
         @Override
         public Fragment getItem(int position) {
             return CardSliderFragment.newInstance(position);
-        }
+    }
 
         @Override
         public int getCount() {
             // number of Slider Pages is size of ArrayList<> CardBannerItems
             return Store.cardBannerItems.size();
         }
+
     }
 }
