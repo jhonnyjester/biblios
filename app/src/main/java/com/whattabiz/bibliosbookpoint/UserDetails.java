@@ -38,7 +38,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -55,7 +54,7 @@ public class UserDetails extends AppCompatActivity {
     private Spinner cource, sem, prof;
     private Button submit;
     private Animation iconRotate;
-    private EditText fullName, collegeName, email, passwordEditText, phoneEditText;
+    private EditText fullName, collegeName, email, passwordEditText, phoneEditText, passwordReeditText;
     private LinearLayout layout_clg, spinner_details;
     private boolean isNameValid = false;
     private boolean isEmailValid = false;
@@ -69,7 +68,7 @@ public class UserDetails extends AppCompatActivity {
     private List<String> profession;
     private List<String> sems;
     private ArrayAdapter<String> dataAdapter0, dataAdapter1, dataAdapter3, dataAdapter2;
-    private String name, collegename, course, semester, profess, Email, password, phoneNumber;
+    private String name, collegename, course, semester, profess, Email, password, phoneNumber, passwordRedit;
     private int professionId;
 
     private SharedPreferences.Editor editor;
@@ -77,6 +76,7 @@ public class UserDetails extends AppCompatActivity {
 
     private String url = "http://www.bibliosworld.com/Biblios/androidregistration.php";
     private boolean isPhoneValid = false;
+    private boolean isPasswordReeditValid = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +98,8 @@ public class UserDetails extends AppCompatActivity {
         fullName = (EditText) findViewById(R.id.fullName);
         collegeName = (EditText) findViewById(R.id.collegeName);
         email = (EditText) findViewById(R.id.email);
+
+        passwordReeditText = (EditText) findViewById(R.id.password_reenter_edit_text);
 
         cource = (Spinner) findViewById(R.id.cource);
         cources = new ArrayList<>();
@@ -146,8 +148,6 @@ public class UserDetails extends AppCompatActivity {
         dataAdapter0.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         prof.setAdapter(dataAdapter0);
 
-        LinkedList<Membership> linkedList = new LinkedList<>();
-        linkedList.getFirst();
 
         // Profession Selection Adapter
         prof.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -211,9 +211,12 @@ public class UserDetails extends AppCompatActivity {
                 profession = prof.getSelectedItem().toString();
                 password = passwordEditText.getText().toString();
                 phoneNumber = phoneEditText.getText().toString();
+                passwordRedit = passwordReeditText.getText().toString();
+
 
                 // validate the details
-                if (isAllDetailsValid(userName, userEmail, userCourse, userCollegeName, userSem, profession, password, phoneNumber)) {
+                if (isAllDetailsValid(userName, userEmail, userCourse, userCollegeName,
+                        userSem, profession, password, phoneNumber, passwordRedit)) {
                     iconRotate.setAnimationListener(new Animation.AnimationListener() {
                         @Override
                         public void onAnimationStart(Animation animation) {
@@ -289,7 +292,11 @@ public class UserDetails extends AppCompatActivity {
                 } else if (!isProffesionValid) {
                     Toast.makeText(getApplicationContext(), "Please Choose the Profession!", Toast.LENGTH_SHORT).show();
                 } else if (!isPasswordValid) {
-                    Toast.makeText(UserDetails.this, "Invalid Password!", Toast.LENGTH_SHORT).show();
+                    passwordEditText.setError("Invalid Password!");
+                    passwordEditText.requestFocus();
+                } else if (!isPasswordReeditValid) {
+                    passwordReeditText.setError("Passwords Don't match");
+                    passwordReeditText.requestFocus();
                 } else {
                     Toast.makeText(getApplicationContext(), "Please enter valid Details!", Toast.LENGTH_SHORT).show();
                 }
@@ -300,7 +307,7 @@ public class UserDetails extends AppCompatActivity {
     }
 
     private boolean isAllDetailsValid(String userName, String userEmail, String userCourse,
-                                      String collegeName, String userSem, String uProf, String password, String phoneNumber) {
+                                      String collegeName, String userSem, String uProf, String password, String phoneNumber, String passwordRedit) {
         if (isNameValid(userName)) {
             isNameValid = true;
             Log.v("Name Valid: ", "Valid");
@@ -338,11 +345,24 @@ public class UserDetails extends AppCompatActivity {
             isPhoneValid = true;
         }
 
-        return isEmailValid & isNameValid & isCourseValid & isCollegeValid & isSemValid & isProffesionValid & isPasswordValid & isPhoneValid;
+        if (isPasswordReeditValid(passwordRedit)) {
+            isPasswordReeditValid = true;
+        }
+
+        return isEmailValid & isNameValid & isCourseValid & isCollegeValid
+                & isSemValid
+                & isProffesionValid
+                & isPasswordValid
+                & isPasswordReeditValid
+                & isPhoneValid;
+    }
+
+    private boolean isPasswordReeditValid(String passwordRedit) {
+        return !passwordRedit.isEmpty() && passwordRedit.equals(password);
     }
 
     private boolean isPasswordValid(String password) {
-        return !(password.isEmpty() && password.length() < 3);
+        return !(password.isEmpty() && password.length() > 4);
     }
 
     private boolean isPhoneNumberValid(String phone) {
@@ -417,7 +437,7 @@ public class UserDetails extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(s);
                     if (jsonObject.getInt("status") == 1) {
-                        Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
 
                         // if successful go next
                         gotoNext();

@@ -18,8 +18,8 @@ public class Store extends Application {
     public static final ArrayList<CartWishModel> categoriesBookName = new ArrayList<>();
     // cool stuff's here
     public static final HashMap<String, ArrayList<CartWishModel>> bookCategories = new HashMap<>();
-    // Store promo codes
-    public static final ArrayList<promo> PromoCodes = new ArrayList<>();
+    // Store PromoCode codes
+    public static final ArrayList<PromoCode> PROMO_CODE_CODEs = new ArrayList<>();
     public static ArrayList<CartWishModel> cardBannerItems = new ArrayList<>();
     public static ArrayList<CartWishModel> suggestedBooks = new ArrayList<>();
     public static ArrayList<CartWishModel> Orders = new ArrayList<>();

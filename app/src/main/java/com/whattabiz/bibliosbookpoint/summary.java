@@ -132,11 +132,12 @@ public class summary extends AppCompatActivity {
         promoCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /* Send the current Total price and calculate the discount amount from promo codes and return back
+                /* Send the current Total price and calculate the discount amount from PromoCode codes and return back
                  * the Total amount and set it to the TotalAmount TextView */
                 Intent promoIntent = new Intent(summary.this, PromoActivity.class);
                 promoIntent.putExtra(TOTAL_AMOUNT_KEY, total.getText());
-                startActivityForResult(promoIntent, PROMO_REQUEST_CODE);
+                startActivity(promoIntent);
+                // startActivityForResult(promoIntent, PROMO_REQUEST_CODE);
             }
         });
     }

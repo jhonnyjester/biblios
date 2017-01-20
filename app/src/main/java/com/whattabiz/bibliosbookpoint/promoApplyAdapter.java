@@ -40,7 +40,7 @@ public class promoApplyAdapter extends RecyclerView.Adapter<promoApplyAdapter.My
         holder.promoSelectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // goto promo apply activity
+                // goto PromoCode apply activity
                 // Toast.makeText(view.getContext(), "Clicked Here : " + holder.getAdapterPosition(), Toast.LENGTH_SHORT).show();
                 Snackbar.make(view, "What Next? :-(", Snackbar.LENGTH_INDEFINITE).show();
                 //  view.getContext().startActivity(new Intent(view.getContext(), PromoActivity.class));

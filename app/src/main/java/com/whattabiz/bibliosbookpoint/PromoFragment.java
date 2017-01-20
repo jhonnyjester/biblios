@@ -39,9 +39,9 @@ import static android.view.View.GONE;
 public class PromoFragment extends Fragment {
 
     private final String PROMO_URL = "http://bibliosworld.com/Biblios/androidpromo.php";
-    private final List<promo> promoList = new ArrayList<>();
+    private final List<PromoCode> promoCodeList = new ArrayList<>();
     private RecyclerView recyclerView;
-    private promoAdapter mAdapter;
+    private PromoCodeAdapter mAdapter;
     private RelativeLayout promoRelativeLayout;
     private ProgressBar progressBar;
 
@@ -85,7 +85,7 @@ public class PromoFragment extends Fragment {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String msg = jsonObject.getString("msg");
                 String percentage = jsonObject.getString("percentage");
-                promoList.add(new promo(percentage, msg));
+                promoCodeList.add(new PromoCode(percentage, msg));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -97,7 +97,7 @@ public class PromoFragment extends Fragment {
 
     private void inflateList() {
         // append the list details to the RecyclerView
-        mAdapter = new promoAdapter(promoList, getContext());
+        mAdapter = new PromoCodeAdapter(promoCodeList, getContext());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

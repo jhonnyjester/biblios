@@ -4,15 +4,15 @@ package com.whattabiz.bibliosbookpoint;
  * Created by User on 8/4/2016.
  */
 
-public class promo {
+public class PromoCode {
 
 
     private String discount, name;
 
-    public promo() {
+    public PromoCode() {
     }
 
-    public promo(String discount, String name) {
+    public PromoCode(String discount, String name) {
         this.discount = discount;
         this.name = name;
     }
