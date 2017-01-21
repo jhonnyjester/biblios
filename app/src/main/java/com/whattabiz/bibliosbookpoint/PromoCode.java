@@ -7,30 +7,41 @@ package com.whattabiz.bibliosbookpoint;
 public class PromoCode {
 
 
-    private String discount, name;
+    private String id;
+    private String msg;
+    private String percentage;
 
     public PromoCode() {
     }
 
-    public PromoCode(String discount, String name) {
-        this.discount = discount;
-        this.name = name;
+    public PromoCode(String id, String msg, String percentage) {
+        this.id = id;
+        this.msg = msg;
+        this.percentage = percentage;
     }
 
-    public String getDiscount() {
-        return discount;
+    public String getPercentage() {
+        return percentage;
     }
 
-    public void setDiscount(String discount) {
-        this.discount = discount;
+    public void setPercentage(String percentage) {
+        this.percentage = percentage;
     }
 
-    public String getName() {
-        return name;
+    public String getId() {
+        return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
 }

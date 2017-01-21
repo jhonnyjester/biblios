@@ -9,7 +9,7 @@ public class Constants {
 
     public static final String MEMBERSHIP_REQUEST_URL = "http://bibliosworld.com/Biblios/androidmembership.php?key=WhattabizBiblios&user_id=";
     public static final String PROMO_CODE_REQUEST_URL = "http://bibliosworld.com/Biblios/androidpromo.php";
-
+    public static final String PROMO_CODE_APPLY_URL = "http://bibliosworld.com/Biblios/androidPromoApplied.php";
 
     public static final int FirebaseMessagingRequestCode = 14;
 

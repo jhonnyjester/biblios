@@ -50,7 +50,7 @@
 
     <fragment
         android:id="@+id/user_contact_Fragment"
-        android:name="com.whattabiz.bibliosbookpoint.ui.UserContactFragment"
+        android:name="com.whattabiz.bibliosbookpoint.UserContactFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="16dp"

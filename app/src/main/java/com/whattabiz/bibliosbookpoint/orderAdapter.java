@@ -40,15 +40,15 @@ public class orderAdapter extends RecyclerView.Adapter<orderAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-        holder.name.setText(Store.placedOrders.get(position).getBookname());
-        float price = Integer.parseInt(Store.placedOrders.get(position).getCost()) * Store.placedOrders.get(position).getNumberOfItems();
+        holder.name.setText(Store.Orders.get(position).getBookname());
+        float price = Integer.parseInt(Store.Orders.get(position).getCost()) * Store.placedOrders.get(position).getNumberOfItems();
         holder.price.setText(mContext.getResources().getString(R.string.rupee) + price);
         Picasso.with(mContext)
-                .load(Store.placedOrders.get(position).getbUrl())
+                .load(Store.Orders.get(position).getbUrl())
                 .error(R.drawable.book_placeholder)
                 .placeholder(R.drawable.book_placeholder)
                 .into(holder.book_img);
-        holder.numOfItems.setText(String.valueOf(Store.placedOrders.get(position).getNumberOfItems()));
+        holder.numOfItems.setText(String.valueOf(Store.Orders.get(position).getNumberOfItems()));
         holder.cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,9 +84,9 @@ public class orderAdapter extends RecyclerView.Adapter<orderAdapter.MyViewHolder
 
     private void cancelOrder(final int position) {
         String url = "http://bibliosworld.com/Biblios/androidcancel.php";
-        String bname = Store.placedOrders.get(position).getBookname();
+        String bname = Store.Orders.get(position).getBookname();
         bname = bname.replaceAll(" ", "%20");
-        String bisbn = Store.placedOrders.get(position).getBisbn();
+        String bisbn = Store.Orders.get(position).getBisbn();
         bisbn = bisbn.replaceAll(" ", "%20");
         //TelephonyManager telephonyManager = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
         String user_id = Store.user_id;
@@ -102,10 +102,10 @@ public class orderAdapter extends RecyclerView.Adapter<orderAdapter.MyViewHolder
                 // if response was successfull remove that order pos elem
                 if (response.contains("successful")) {
                     // remove that order
-                    Store.placedOrders.remove(position);
+                    Store.Orders.remove(position);
                     Toast.makeText(mContext, "Your order has been Canceled!", Toast.LENGTH_SHORT).show();
                     notifyItemRemoved(position);
-                    notifyItemRangeChanged(position, Store.placedOrders.size());
+                    notifyItemRangeChanged(position, Store.Orders.size());
                 } else {
                     Toast.makeText(mContext, response, Toast.LENGTH_SHORT).show();
                 }

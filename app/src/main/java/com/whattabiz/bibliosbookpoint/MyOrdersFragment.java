@@ -36,7 +36,7 @@ public class MyOrdersFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         emptyOrders = (ImageView) view.findViewById(R.id.empty_orders_img);
 
-        if (Store.placedOrders.isEmpty()) {
+        if (Store.Orders.isEmpty()) {
             Toast.makeText(getContext(), "No Orders!", Toast.LENGTH_SHORT).show();
             emptyOrders.setVisibility(View.VISIBLE);
         } else {

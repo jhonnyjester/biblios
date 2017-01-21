@@ -111,11 +111,21 @@ public class summary extends AppCompatActivity {
                     addressLine1.setErrorEnabled(true);
                     addressLine1.setError("Enter the Address");
                     addressLine2.setErrorEnabled(false);
+                    addressLine3.setErrorEnabled(false);
                 } else if (addressLine2.getEditText().getText().toString().isEmpty()) {
                     addressLine2.setErrorEnabled(true);
                     addressLine2.setError("Enter the Address");
                     addressLine1.setErrorEnabled(false);
+                    addressLine3.setErrorEnabled(false);
+                } else if (addressLine3.getEditText().getText().toString().isEmpty()) {
+                    addressLine3.setErrorEnabled(true);
+                    addressLine3.setError("Enter the Pin Code");
+                    addressLine1.setErrorEnabled(false);
+                    addressLine2.setErrorEnabled(false);
                 } else {
+                    addressLine1.setErrorEnabled(false);
+                    addressLine2.setErrorEnabled(false);
+                    addressLine3.setErrorEnabled(false);
                     DELIVERY_ADDRESS = addressLine1.getEditText().getText().toString() + "," +
                             addressLine2.getEditText().getText().toString() + "," +
                             addressLine3.getEditText().getText().toString();
@@ -149,7 +159,7 @@ public class summary extends AppCompatActivity {
         if (requestCode == PROMO_REQUEST_CODE) {
             /* If Activity called was successfully returned */
             if (resultCode == RESULT_OK) {
-                total.setText(data.getStringExtra(TOTAL_AMOUNT_KEY));
+                total.setText(String.valueOf(Math.round(Store.CURRENT_TOTAL)));
             }
         }
     }

@@ -183,23 +183,6 @@ public class NavigationHomeActivity extends AppCompatActivity
         MenuItem searchItem = menu.findItem(R.id.action_search);
         searchView.setMenuItem(searchItem);
 
-        /*// add the search view query listener
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                // do something when text submit
-                Intent intent = new Intent(NavigationHomeActivity.this, SearchResultsActivity.class);
-                intent.putExtra("SEARCH_STRING", query);
-                startActivity(intent);
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                // do something when text is changed
-                return false;
-            }
-        });*/
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -257,9 +240,6 @@ public class NavigationHomeActivity extends AppCompatActivity
         } else if (id == R.id.settings) {
             this.setTitle("Settings");
             getSupportFragmentManager().beginTransaction().replace(R.id.content_navigation_home, new SettingsFragment()).commit();
-        } else if (id == R.id.promo_codes) {
-            this.setTitle("Promo Codes");
-            getSupportFragmentManager().beginTransaction().replace(R.id.content_navigation_home, new PromoFragment()).commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

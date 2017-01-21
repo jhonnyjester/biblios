@@ -19,8 +19,6 @@ import android.widget.Toast;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 import com.squareup.picasso.Picasso;
 
-import static android.view.View.GONE;
-
 /**
  * Invoked When User Clicks the i'th List Item
  */
@@ -51,7 +49,7 @@ public class ProductView extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.setTitle("Book Info");
 
-        discount = (TextView) findViewById(R.id.discount);
+        //discount = (TextView) findViewById(R.id.discount);
         sellingPriceTextView = (TextView) findViewById(R.id.selling_price_tv);
         mrpPriceTextView = (TextView) findViewById(R.id.mrp_price_tv);
         bookImage = (ImageView) findViewById(R.id.bookimg);
@@ -81,7 +79,7 @@ public class ProductView extends AppCompatActivity {
 
         this.setTitle(bname);
 
-        discount.setVisibility(GONE);
+        //  discount.setVisibility(GONE);
 
         new CartWishModel(bname, bSPrice, bUrl);
 

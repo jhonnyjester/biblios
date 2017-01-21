@@ -41,7 +41,7 @@ public class checkoutAdapter extends RecyclerView.Adapter<checkoutAdapter.MyView
 
         public MyViewHolder(View view) {
             super(view);
-            name = (TextView) view.findViewById(R.id.name);
+            name = (TextView) view.findViewById(R.id.msg);
             price = (TextView) view.findViewById(R.id.selling_price_tv);
         }
     }
