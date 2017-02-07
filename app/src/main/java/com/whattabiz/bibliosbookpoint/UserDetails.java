@@ -7,7 +7,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.text.TextUtilsCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.Menu;
@@ -362,11 +364,11 @@ public class UserDetails extends AppCompatActivity {
     }
 
     private boolean isPasswordValid(String password) {
-        return !(password.isEmpty() && password.length() > 4);
+        return !(password.isEmpty() && password.length() > 6);
     }
 
     private boolean isPhoneNumberValid(String phone) {
-        return !(phone.isEmpty() && phone.length() != 10);
+        return !(TextUtils.isEmpty(phone) || phone.length() != 10);
     }
 
     private boolean isNameValid(String name) {

@@ -1,0 +1,92 @@
+<resources>
+
+    <style name="BibliosTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/BibliosColorPrimary</item>
+        <item name="colorPrimaryDark">@color/BibliosColorDark</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="colorAccent">@color/BibliosColorAccent</item>
+    </style>
+
+    <style name="BibliosTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/BibliosColorPrimary</item>
+        <item name="colorPrimaryDark">@color/BibliosColorDark</item>
+        <item name="colorAccent">@color/BibliosColorAccent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/BibliosColorDark</item>
+        <item name="android:colorControlHighlight">@color/BibliosRippleColor</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:navigationBarColor">@color/BibliosColorPrimary</item>
+    </style>
+
+    <style name="noActionBars" parent="BibliosTheme.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:navigationBarColor">@color/BibliosColorPrimary</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="settingsActivity" parent="BibliosTheme.NoActionBar">
+        <item name="android:statusBarColor">@color/BibliosColorDark</item>
+        <item name="android:navigationBarColor">@color/BibliosColorPrimary</item>
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
+    <style name="SplashPageTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowContentTransitions">true</item>
+
+        <!-- Window transitions here -->
+
+    </style>
+
+
+    <style name="LoginPageTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
+    <style name="TextInputLayoutTextAppearance" parent="ThemeOverlay.AppCompat.Dark">
+        <!-- HINT color in FALSE state -->
+        <item name="android:textColorHint">@color/md_white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/md_white</item>
+
+        <!-- Label and Bar color -->
+        <item name="android:colorAccent">@color/md_white</item>
+        <item name="android:colorControlActivated">@color/md_white</item>
+        <item name="android:colorControlNormal">@color/md_grey_50</item>
+        <item name="android:colorControlHighlight">@color/md_white</item>
+    </style>
+
+    <style name="TextInputHintAppearance" parent="TextAppearance.AppCompat.Inverse">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/md_white</item>
+    </style>
+
+    <style name="TextInputErrorAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/md_red_500</item>
+    </style>
+
+    <style name="MaterialSearchViewStyle">
+        <item name="searchBackground">@color/md_white</item>
+        <item name="searchSuggestionBackground">@color/md_white</item>
+        <item name="android:textColor">@android:color/primary_text_light</item>
+        <item name="android:textColorHint">@color/md_grey_500</item>
+        <item name="android:hint">@string/material_search_hint</item>
+    </style>
+
+</resources>

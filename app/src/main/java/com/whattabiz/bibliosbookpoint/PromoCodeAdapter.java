@@ -114,7 +114,9 @@ class PromoCodeAdapter extends RecyclerView.Adapter<PromoCodeAdapter.MyViewHolde
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("key", Constants.BIBLIOS_KEY);
-                params.put("id", promoCodeList.get(position).getId());
+                Log.i(KEY, "user_id: " + Store.user_id);
+                Log.i(KEY, "promo_id: " + promoCodeList.get(position).getId());
+                params.put("promo_id", promoCodeList.get(position).getId());
                 params.put("user_id", Store.user_id);
                 return params;
             }

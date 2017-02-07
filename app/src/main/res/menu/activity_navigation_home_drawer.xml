@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:checked="true"
+            android:enabled="true"
+            android:icon="@mipmap/home1"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_order"
+            android:icon="@mipmap/myorder1"
+            android:actionLayout="@layout/fragment_my_order"
+            android:title="My Orders" />
+        <item
+            android:id="@+id/nav_categories"
+            android:icon="@mipmap/categories"
+            android:actionLayout="@layout/activity_categories_view_pager"
+            android:title="Categories" />
+        <item
+            android:id="@+id/nav_request"
+            android:icon="@mipmap/request"
+            android:actionLayout="@layout/activity_request"
+            android:title="Request Book" />
+        <item
+            android:id="@+id/settings"
+            android:icon="@mipmap/setting_icon"
+            android:title="Settings" />
+        <!-- <item
+             android:id="@+id/nav_credits"
+             android:icon="@mipmap/reward1"
+             android:title="Credits"/> -->
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <!-- <item
+                 android:id="@+id/nav_contact"
+                 android:checkable="true"
+                 android:icon="@android:drawable/sym_action_call"
+                 android:title="Contact Us" /> -->
+            <item
+                android:id="@+id/nav_about"
+                android:checkable="true"
+                android:icon="@mipmap/wattabiz1"
+                android:title="About Whattabiz" />
+        </menu>
+    </item>
+
+</menu>

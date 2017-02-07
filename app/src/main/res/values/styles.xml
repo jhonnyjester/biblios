@@ -1,0 +1,97 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="BibliosTheme" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">@color/BibliosColorPrimary</item>
+        <item name="colorPrimaryDark">@color/BibliosColorDark</item>
+        <item name="colorAccent">@color/BibliosColorAccent</item>
+    </style>
+
+    <style name="BibliosTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/BibliosColorPrimary</item>
+        <item name="colorPrimaryDark">@color/BibliosColorDark</item>
+        <item name="colorAccent">@color/BibliosColorAccent</item>
+    </style>
+    <style name="SummaryTheme" parent="BibliosTheme">
+        <item name="android:background">#fff</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="noActionBars" parent="Theme.Design.NoActionBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+
+
+    <style name="settingsActivity" parent="BibliosTheme.NoActionBar" />
+
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+    <style name="BibliosTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="BibliosTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="BibliosTheme.WhiteAccent">
+        <item name="colorAccent">#fff</item>
+    </style>
+
+    <style name="SplashPageTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowContentTransitions">true</item>
+
+        <!-- Window transitions here -->
+
+
+    </style>
+
+
+    <style name="LoginPageTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowContentTransitions">true</item>
+    </style>
+
+    <style name="TextInputLayoutTextAppearance" parent="ThemeOverlay.AppCompat.Dark">
+        <!-- HINT color in FALSE state -->
+        <item name="android:textColorHint">@color/md_white</item>
+        <item name="android:textSize">20sp</item>
+
+        <!-- Label and Bar color -->
+        <item name="android:colorAccent">@color/md_white</item>
+        <item name="android:colorControlActivated">@color/md_white</item>
+        <item name="android:colorControlNormal">@color/md_grey_50</item>
+        <item name="android:colorControlHighlight">@color/md_white</item>
+    </style>
+
+    <style name="TextInputHintAppearance" parent="TextAppearance.AppCompat.Inverse">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextInputErrorAppearance" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/md_red_500</item>
+    </style>
+
+    <style name="MaterialSearchViewStyle">
+        <item name="searchBackground">@color/md_white</item>
+        <item name="searchSuggestionBackground">@color/md_white</item>
+        <item name="android:textColor">@android:color/primary_text_light</item>
+        <item name="android:textColorHint">@color/md_grey_700</item>
+        <item name="android:hint">@string/material_search_hint</item>
+    </style>
+
+</resources>

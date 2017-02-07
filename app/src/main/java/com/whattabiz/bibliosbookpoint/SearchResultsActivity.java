@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -28,6 +27,7 @@ public class SearchResultsActivity extends AppCompatActivity {
     private ActivitySearchResultsBinding activitySearchResultsBinding;
     private String searchString;
     private LinearLayout emptySearch;
+    private Boolean bookPresent = false;
     private String url = "http://bibliosworld.com/Biblios/androidsearch.php?";
 
     @Override
@@ -64,8 +64,8 @@ public class SearchResultsActivity extends AppCompatActivity {
                 Log.d("Search Response", response);
                 // hide the progress
                 activitySearchResultsBinding.progress.setVisibility(View.GONE);
-                if (response.equals("[]") || response.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Empty Results!", Toast.LENGTH_SHORT).show();
+                if (response.equals("[]")) {
+                    // Toast.makeText(getApplicationContext(), "Empty Results!", Toast.LENGTH_SHORT).show();
                     emptySearch.setVisibility(View.VISIBLE);
                 } else {
                     addItemsToArrayList(response);

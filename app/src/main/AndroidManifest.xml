@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.whattabiz.bibliosbookpoint">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <uses-permission-sdk-23 android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission-sdk-23 android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission-sdk-23 android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:fullBackupContent="true"
+        android:icon="@drawable/splogrc"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/BibliosTheme.NoActionBar">
+        <activity
+            android:name=".summary"
+            android:parentActivityName=".NavigationHomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/BibliosTheme"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".UserDetails"
+            android:screenOrientation="portrait"
+            android:theme="@style/settingsActivity"/>
+        <activity
+            android:name=".MembershipMainActivity"
+            android:parentActivityName=".AccountSettingsActivity"
+            android:theme="@style/BibliosTheme"/>
+        <activity
+            android:name=".WishMainActivity"
+            android:parentActivityName=".NavigationHomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/BibliosTheme"/>
+        <activity
+            android:name=".ProductView"
+            android:parentActivityName=".NavigationHomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/BibliosTheme.NoActionBar"/>
+        <activity
+            android:name=".promoSelectActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/BibliosTheme.NoActionBar"/>
+        <activity
+            android:name=".PromoActivity"
+            android:parentActivityName=".NavigationHomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/BibliosTheme"/>
+        <activity
+            android:name=".NumberVerify"
+            android:screenOrientation="portrait"
+            android:theme="@style/noActionBars"/>
+        <activity
+            android:name=".Splash"
+            android:screenOrientation="portrait"
+            android:theme="@style/noActionBars"/>
+        <activity
+            android:name=".phone"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".CategoriesViewPager"
+            android:parentActivityName=".NavigationHomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/BibliosTheme.NoActionBar"/>
+        <activity
+            android:name=".RequestActivity"
+            android:parentActivityName=".NavigationHomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/BibliosTheme"/>
+        <activity
+            android:name=".AccountSettingsActivity"
+            android:parentActivityName=".NavigationHomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/BibliosTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.whattabiz.bibliosbookpoint.NavigationHomeActivity"/>
+        </activity>
+        <activity
+            android:name=".NavigationHomeActivity"
+            android:label="Biblios"
+            android:screenOrientation="portrait"
+            android:theme="@style/BibliosTheme.NoActionBar"/>
+        <activity
+            android:name=".CartActivity"
+            android:parentActivityName=".NavigationHomeActivity"
+            android:theme="@style/BibliosTheme"/>
+        <activity
+            android:name=".SearchResultsActivity"
+            android:theme="@style/BibliosTheme"/>
+        <activity
+            android:name=".PaymentGatewayActivity"
+            android:theme="@style/BibliosTheme"/>
+        <activity
+            android:name=".SplashPageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashPageTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".HomeActivty">
+        </activity>
+        <activity
+            android:name=".RegistrationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/LoginPageTheme">
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashPageTheme">
+        </activity>
+        <activity
+            android:name=".SignUpActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashPageTheme"/>
+
+        <!--
+        <service android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>            </intent-filter>
+        </service>
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        -->
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashPageTheme">
+        </activity>
+        <activity
+            android:name=".OrderSummary"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashPageTheme">
+        </activity>
+        <activity
+            android:name=".MembershipInfoActivity"
+            android:parentActivityName=".MembershipMainActivity"
+            android:theme="@style/BibliosTheme">
+        </activity>
+        
+        <!-- Firebase Services -->
+        <service android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".MyFirebaseInstanceIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+    </application>
+</manifest>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:gravity="center_horizontal">
+    <ImageView
+        android:layout_marginTop="70dp"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        android:src="@drawable/bibtext"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#ffffff"
+        android:text="New to Biblios ?"
+        android:textSize="20sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/number_verif_bg"
+        android:padding="30dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#616161"
+            android:textSize="17sp"
+            android:id="@+id/text1"
+            android:text="Get access to wide range of books on various contexts. Never be too late to catch the latest arrivals in the market. Request for unavailable books in the store so that we can get your copy as soon as possible !"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sounds Good ? Let's Sign you up"
+            android:id="@+id/text2"
+
+            android:paddingTop="10dp"
+            android:textSize="20sp"
+            android:textColor="#7e57c2"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:paddingTop="15dp"
+            android:orientation="vertical">
+        <EditText
+            android:background="@drawable/editbg"
+            android:padding="10dp"
+            android:textCursorDrawable="@drawable/cursorcolor"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:hint="Mobile Number"
+            android:gravity="center"
+            android:id="@+id/numfield"
+            android:inputType="phone"
+            android:textColor="#4527a0"
+            android:textColorHint="#c0c0c0"/>
+            <Button
+                android:layout_marginTop="10dp"
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:text="SIGN UP"
+                android:background="@drawable/loginbtn"
+                android:textColor="@drawable/signbtntxt"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
