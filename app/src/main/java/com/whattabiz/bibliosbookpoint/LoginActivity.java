@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         // Sins of my past
         emailEditText.requestFocus();
+
     }
 
     @Override
@@ -91,6 +92,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
         }
     }
+
 
     private void sendRequest() {
         final String email = emailEditText.getText().toString();

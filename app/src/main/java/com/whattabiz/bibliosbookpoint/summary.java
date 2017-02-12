@@ -1,5 +1,6 @@
 package com.whattabiz.bibliosbookpoint;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -32,10 +33,11 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class summary extends AppCompatActivity {
+public class summary extends AppCompatActivity implements PaymentChoiceListener {
 
     public static final String TOTAL_AMOUNT_KEY = "TOTAL_AMOUNT";
     public static String[] ADDRESS = new String[3];
+    private final String TAG = "summary Activity";
     private final String URL = "http://whattabiz.com/Biblios/androidorders.php";
     private final String KEY = "WhattabizBiblios";
     /* Promo Request Code */
@@ -92,11 +94,6 @@ public class summary extends AppCompatActivity {
         }
         total.setText(String.valueOf(sum));
 
-        /*
-        * Create the JSON of orders while this activity starts
-        * */
-        makeJson();
-
         cancleOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,12 +123,14 @@ public class summary extends AppCompatActivity {
                     addressLine1.setErrorEnabled(false);
                     addressLine2.setErrorEnabled(false);
                     addressLine3.setErrorEnabled(false);
-                    DELIVERY_ADDRESS = addressLine1.getEditText().getText().toString() + "," +
-                            addressLine2.getEditText().getText().toString() + "," +
-                            addressLine3.getEditText().getText().toString();
+                    DELIVERY_ADDRESS = getAddress();
+
+                    // Create the final Order json
+                    makeJson();
+
                     // place the order
                     if (!isOrderedOnce) {
-                        makePayment();
+                        showDialog();
                     } else {
                         Toast.makeText(summary.this, "You have already placed this order!", Toast.LENGTH_SHORT).show();
                     }
@@ -164,12 +163,61 @@ public class summary extends AppCompatActivity {
         }
     }
 
-    //
-    void makePayment() {
+    // display a dialog of choices
+    private void showDialog() {
+        PaymentChoiceFragment paymentChoiceFragment = new PaymentChoiceFragment();
+        paymentChoiceFragment.show(getSupportFragmentManager(), "PaymentChoiceFragment");
+    }
+
+    // Redirect the payment to Pay-U money webview
+    private void redirectToPayU() {
         Intent intent = new Intent(this, PaymentGatewayActivity.class);
         intent.putExtra("PRODUCT_INFO", makeProductInfoJson());
         intent.putExtra("TOTAL_AMOUNT", String.valueOf(sum));
         startActivity(intent);
+    }
+
+    // send the JSON directly to biblios server
+    private void redirectToBibliosServer() {
+        MaterialDialog.Builder builder = new MaterialDialog.Builder(this)
+                .cancelable(false)
+                .progress(true, 0)
+                .content("Placing your order. Please Wait!");
+        final MaterialDialog dialog = builder.build();
+
+        dialog.show();
+
+        StringRequest stringRequest = new
+                StringRequest(Request.Method.POST, Constants.ORDERS_BIBLIOS_URL, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG, response);
+                        if (dialog.isShowing()) {
+                            dialog.dismiss();
+                        }
+
+                        Toast.makeText(summary.this, "You order will be placed soon..", Toast.LENGTH_SHORT).show();
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        if (dialog.isShowing()) {
+                            dialog.dismiss();
+                        }
+                    }
+                }) {
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("key", Constants.BIBLIOS_KEY);
+                        params.put("user_id", Store.user_id);
+                        params.put("orders", ordersJson);
+                        params.put("total", String.valueOf(sum));
+                        return params;
+                    }
+                };
+
+        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 
     /*
@@ -238,16 +286,36 @@ public class summary extends AppCompatActivity {
                 jsonArray.put(object);
             }
 
+            // Add the orders to the json object
+            // { "orders": ""}
             jsonObject.put("orders", jsonArray);
+
+            // Add the total sum
+            // { "total_price" : "566"}
+            jsonObject.put("total_price", String.valueOf(sum));
+
+            // Append Address to the JSON
+            // { "orders" : "", "address" : ""}
+            jsonObject.put("address", getAddress());
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         ordersJson = jsonObject.toString();
-        Log.d("JSON ORDER", ordersJson);
+        Log.v("summary.java", "Json Order: " + ordersJson);
     }
 
-    String makeProductInfoJson() {
+    // Get the address lines from editText
+    // Delimit each address by a ',' comma
+    // Return the final Address
+    private String getAddress() {
+        return addressLine1.getEditText().getText().toString() + "," +
+                addressLine2.getEditText().getText().toString() + "," +
+                addressLine3.getEditText().getText().toString();
+    }
+
+    private String makeProductInfoJson() {
         JSONObject jsonObject = new JSONObject();
         try {
             JSONArray jsonArray = new JSONArray();
@@ -308,5 +376,22 @@ public class summary extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         this.finish();
+    }
+
+    /**
+     * When user chooses the Payment Method for the orders
+     */
+    @Override
+    public void onPositiveDialogClick(DialogInterface dialog, int choice) {
+        switch (choice) {
+            case 0:
+                // COD
+                redirectToBibliosServer();
+                break;
+            case 1:
+                // Pay - u
+                redirectToPayU();
+                break;
+        }
     }
 }

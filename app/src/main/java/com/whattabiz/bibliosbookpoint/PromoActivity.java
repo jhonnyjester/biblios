@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class PromoActivity extends AppCompatActivity {
     private final String PROMO_URL = "http://bibliosworld.com/Biblios/androidpromo.php";
@@ -94,7 +95,11 @@ public class PromoActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Log.d(KEY, "Response: " + response);
-                parseJson(response);
+                if (Objects.equals(response, "[{}]") || response.contains("id")) {
+                    Toast.makeText(PromoActivity.this, "No PromoCodes Available at the moment!", Toast.LENGTH_SHORT).show();
+                } else {
+                    parseJson(response);
+                }
                 progressBar.setVisibility(View.GONE);
             }
         }, new Response.ErrorListener() {
@@ -128,6 +133,7 @@ public class PromoActivity extends AppCompatActivity {
             }
         } catch (JSONException e) {
             e.printStackTrace();
+
         }
     }
 
@@ -145,9 +151,7 @@ public class PromoActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            PromoActivity.this.finish();
-        }
+        PromoActivity.this.finish();
         return super.onOptionsItemSelected(item);
     }
 }

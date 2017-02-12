@@ -81,9 +81,6 @@ public class NavigationHomeActivity extends AppCompatActivity
             }
         });
 
-
-
-
         searchView = (MaterialSearchView) findViewById(R.id.search_view);
         addSearchView();
         if (Store.bookCategories.isEmpty()) {
@@ -110,6 +107,7 @@ public class NavigationHomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     private void addSearchView() {
