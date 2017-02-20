@@ -3,7 +3,10 @@ package com.whattabiz.bibliosbookpoint;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
@@ -64,10 +67,30 @@ public class SplashPageActivity extends AppCompatActivity {
     }
 
     private void doNext() {
-        if (isLoggedIn) {
-            startActivity(new Intent(SplashPageActivity.this, NavigationHomeActivity.class));
+        if (isNetworkAvailable()) {
+            if (isLoggedIn) {
+                startActivity(new Intent(SplashPageActivity.this, NavigationHomeActivity.class));
+            } else {
+                startActivity(new Intent(SplashPageActivity.this, RegistrationActivity.class));
+            }
         } else {
-            startActivity(new Intent(SplashPageActivity.this, RegistrationActivity.class));
+            Toast.makeText(this, "Unable to connect to the internet! Please try again.", Toast.LENGTH_LONG).show();
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    finish();
+                }
+            }, 2000);
         }
+
     }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectionManager.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnectedOrConnecting();
+    }
+
+
 }

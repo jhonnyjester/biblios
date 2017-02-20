@@ -1,6 +1,7 @@
 package com.whattabiz.bibliosbookpoint;
 
 import android.app.Application;
+import android.content.Intent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +19,9 @@ public class Store extends Application {
     public static final ArrayList<CartWishModel> categoriesBookName = new ArrayList<>();
     // cool stuff's here
     public static final HashMap<String, ArrayList<CartWishModel>> bookCategories = new HashMap<>();
+
+    public static boolean isPromoCodeApplied = false;
+    public static Intent promoData = new Intent();
 
     public static float CURRENT_TOTAL;
 

@@ -82,6 +82,9 @@ class PromoCodeAdapter extends RecyclerView.Adapter<PromoCodeAdapter.MyViewHolde
                         float discountAmount = decimalOfPercent * Store.CURRENT_TOTAL;
                         Store.CURRENT_TOTAL = Store.CURRENT_TOTAL - discountAmount;
 
+                        Store.isPromoCodeApplied = true;
+                        Store.promoData.putExtra("promo_id", promoCodeList.get(position).getId());
+
                         Toast.makeText(mContext, "PromoCode Applied Successfully!", Toast.LENGTH_SHORT).show();
 
                         // remove the Applied Promo Code
@@ -114,8 +117,6 @@ class PromoCodeAdapter extends RecyclerView.Adapter<PromoCodeAdapter.MyViewHolde
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("key", Constants.BIBLIOS_KEY);
-                Log.i(KEY, "user_id: " + Store.user_id);
-                Log.i(KEY, "promo_id: " + promoCodeList.get(position).getId());
                 params.put("promo_id", promoCodeList.get(position).getId());
                 params.put("user_id", Store.user_id);
                 return params;
@@ -129,6 +130,8 @@ class PromoCodeAdapter extends RecyclerView.Adapter<PromoCodeAdapter.MyViewHolde
         promoCodeList.remove(pos);
         notifyItemRemoved(pos);
         notifyItemRangeChanged(pos, promoCodeList.size());
+
+        if (materialDialog.isShowing()) materialDialog.dismiss();
     }
 
 

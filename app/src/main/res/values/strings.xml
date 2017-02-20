@@ -23,7 +23,8 @@
     <string name="cource">COURSE</string>
     <string name="sem">SEMESTER</string>
 
-    <string name="whattabiz_about_header">About Whattabiz</string>
+    <string name="whattabiz_about_header">About Biblios</string>
+    <string name="about_biblios_description">Biblios helps the users to search for the books and buy them online. It is a product by biblios book point- renowned shop in Mangalore region. The biblios app provides you the option COD as well. Search from over 10000+ books and get them delivered right at your doorstep. Qualified users also get membership and other discounts</string>
     <string name="whattabiz">M/s. Whattabiz is a software development firm dedicated to introducing businesses, organisations and service to smart solutions and automation and establishing their online footprint. We accomplish the same by development of Mobile Applications, Web applications and Desktop applications.\n\t\tToday every aspect of life has gone online. Internet of things has touched more than a billion lives and counting, as we enter a new era of virtual assents. In such scenario, taking your business online takes up utmost importance.\n\t\tInitially a student initiative aimed at bringing businesses online, Whattabiz has grown to be a Partnership firm with an able team of skilled developers in a multi-faceted Management Structure. </string>
     <string name="about_request1"><b>Requesting required book finds the book in \'Open Library\' and only then your request is placed with administrators authentication.</b></string>
     <string name="title_activity_navigation_home">NavigationHomeActivity</string>

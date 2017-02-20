@@ -130,7 +130,8 @@
             android:textAllCaps="false"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:textColor="@color/BibliosColorDark"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
     </TableRow>
 
     <View
@@ -180,7 +181,8 @@
             android:textAllCaps="false"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             android:textColor="@color/BibliosColorDark"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="invisible" />
     </TableRow>
 
     <View

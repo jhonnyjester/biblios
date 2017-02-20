@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -38,6 +39,7 @@ public class summary extends AppCompatActivity {
     public static String[] ADDRESS = new String[3];
     private final String URL = "http://whattabiz.com/Biblios/androidorders.php";
     private final String KEY = "WhattabizBiblios";
+    private final String PROMO_CANCEL = "http://bibliosworld.com/Biblios/androidPromoCancel.php";
     /* Promo Request Code */
     private final int PROMO_REQUEST_CODE = 13;
     private int sum;
@@ -53,6 +55,20 @@ public class summary extends AppCompatActivity {
     private String DELIVERY_ADDRESS = "";
     /* Address Lines here */
     private TextInputLayout addressLine1, addressLine2, addressLine3;
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            // handle toolbar back button click
+            cancelOrders();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void cancelOrders() {
+        // send the cancel order request
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +116,7 @@ public class summary extends AppCompatActivity {
         cancleOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(summary.this, NavigationHomeActivity.class));
+                cancelOrders();
             }
         });
 
@@ -160,8 +176,42 @@ public class summary extends AppCompatActivity {
             /* If Activity called was successfully returned */
             if (resultCode == RESULT_OK) {
                 total.setText(String.valueOf(Math.round(Store.CURRENT_TOTAL)));
+
+                // check if promo code applied
+                if (Store.isPromoCodeApplied) {
+                    Store.isPromoCodeApplied = false;
+                    // if promo code applied, send the promo id to backend
+                    if (Store.promoData.getStringExtra("promo_id") != null) {
+                        sendPromoId(Store.promoData.getStringExtra("promo_id"));
+                    }
+                }
             }
         }
+    }
+
+    private void sendPromoId(final String promoId) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, PROMO_CANCEL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i("PROMOCANCEL", response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(summary.this, "Some Error Occured", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("promo_id", promoId);
+                params.put("user_id", Store.user_id);
+                return params;
+            }
+        };
+
+        // add the request to queue
+        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 
     //
