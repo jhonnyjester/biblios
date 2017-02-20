@@ -1,0 +1,228 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/bg"
+              android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="#673ab7"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/topicon"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/splogrc"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#673ab7"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="Sign Up"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@drawable/shd1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/phonereg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please verify your Mobile Number to continue..."
+                android:textColor="#424242"
+                android:textSize="16sp"
+                android:typeface="sans"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/mobei"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:background="@drawable/numbg"
+                        android:padding="15dp"
+                        android:text="+91"
+                        android:textColor="#673ab7"
+                        android:textSize="18sp"/>
+
+                    <EditText
+                        android:id="@+id/mobno"
+                        android:layout_width="190dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/numbg"
+                        android:fontFamily="sans-serif-light"
+                        android:hint="MOBILE NUMBER"
+                        android:inputType="phone"
+                        android:maxLength="10"
+                        android:textColor="#673ab7"
+                        android:textColorHint="#c0c0c0"
+                        android:textCursorDrawable="@drawable/cursorcolor"
+                        android:textSize="18sp"/>
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn1"
+                    android:layout_width="270dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/loginbtn"
+                    android:fontFamily="sans-serif-light"
+                    android:padding="10dp"
+                    android:text="REGISTER"
+                    android:textColor="@drawable/signbtntxt"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/numverif"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:padding="20dp"
+
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Congratulations!  Your Mobile Number has been Successfully verified."
+                android:textColor="#424242"
+                android:textSize="16sp"
+                android:typeface="sans"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="20dp"
+                    android:padding="5dp"
+                    android:src="@drawable/verifiedsmall"/>
+
+                <TextView
+                    android:id="@+id/mobverif"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="+91 987654310"
+                    android:textColor="#673ab7"
+                    android:textSize="25sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/btn2"
+                    android:layout_width="270dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/loginbtn"
+                    android:fontFamily="sans-serif-light"
+                    android:padding="10dp"
+                    android:text="CONTINUE"
+                    android:textColor="@drawable/signbtntxt"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+    <!--<RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/radiobg"
+            android:clickable="false"
+            android:padding="5dp" />
+
+        <RadioButton
+            android:id="@+id/rb2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/radiobg"
+            android:clickable="false"
+            android:padding="5dp" />
+
+    </RadioGroup> -->
+

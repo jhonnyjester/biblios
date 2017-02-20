@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">Biblios</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="rupee">\u20B9</string>
+    <string name="about_biblios">Biblios\t v </string>
+    <string name="about"><b>Bibilos</b> is the online bookstore which allow users to search and request books which are unavailable in your locality </string>
+    <string name="name">NAME:</string>
+    <string name="id">ID-BIB-9087</string>
+    <string name="ph">XXXXXXXXXX</string>
+    <string name="permission_granted">Permission Granted!</string>
+    <string name="permission_not_granted">Permission Not Granted!</string>
+    <string name="email">XXXX@XXX.com</string>
+    <string name="nav_header_name">Biblios</string>
+    <string name="nav_header_bib_id">Bib-user-Id</string>
+    <string name="books_purchased">Total books purchased: </string>
+    <string name="up_req_books">Required books for the upgrade: </string>
+    <string name="silver_membership">About Silver membership in detail </string>
+    <string name="gold_membership">About Gold membership in detail </string>
+    <string name="platinum_membership">About Platinum membership in detail </string>
+
+    <string name="cource">COURSE</string>
+    <string name="sem">SEMESTER</string>
+
+    <string name="whattabiz_about_header">About Whattabiz</string>
+    <string name="whattabiz">M/s. Whattabiz is a software development firm dedicated to introducing businesses, organisations and service to smart solutions and automation and establishing their online footprint. We accomplish the same by development of Mobile Applications, Web applications and Desktop applications.\n\t\tToday every aspect of life has gone online. Internet of things has touched more than a billion lives and counting, as we enter a new era of virtual assents. In such scenario, taking your business online takes up utmost importance.\n\t\tInitially a student initiative aimed at bringing businesses online, Whattabiz has grown to be a Partnership firm with an able team of skilled developers in a multi-faceted Management Structure. </string>
+    <string name="about_request1"><b>Requesting required book finds the book in \'Open Library\' and only then your request is placed with administrators authentication.</b></string>
+    <string name="title_activity_navigation_home">NavigationHomeActivity</string>
+    <string name="mem_details"> 25\% id on each book\nRs.5 pen free with each book worth more than Rs.200</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="ProductImageTransition">Product Transition</string>
+    <string name="coming_soon_book_slider">Coming Soon Book Slider</string>
+    <string name="sp">SP</string>
+    <string name="mrp">MRP</string>
+    <string name="book_name">Book Name</string>
+
+    <string name="login">Log in</string>
+    <string name="signup">Sign Up</string>
+    <string name="text_forgot_password">Forgot Password? Click here.</string>
+    <string name="subhead_text">E-mail</string>
+    <string name="subhead_password_text">Password</string>
+    <string name="shared_elem_transtion_login_btn">Shared Element String</string>
+    <string name="login_trouble">Trouble Loggin in?</string>
+
+    <string name="retype_password">Retype Password</string>
+    <string name="trouble_login_text">Trouble Logging in?</string>
+    <string name="summary_order_text">Order Summary</string>
+    <string name="material_search_hint">Enter the Book name="" </string>
+    <string name="current_membership_text">Current Membership</string>
+    <string name="membership_text">Silver</string>
+</resources>
+
+

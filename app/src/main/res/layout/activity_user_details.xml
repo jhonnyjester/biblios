@@ -1,0 +1,330 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            style="@style/BibliosTheme.NoActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:gravity="center"
+            app:layout_scrollFlags="scroll"
+            tools:context="com.whattabiz.bibliosbookpoint.UserDetails">
+
+    <RelativeLayout
+        android:id="@+id/user_reg_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg"
+        android:gravity="center_horizontal">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="60dp"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/topview"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffff"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingTop="100dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingBottom="30dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginRight="15dp"
+                            android:src="@drawable/usericonsmall"/>
+
+                        <EditText
+                            android:id="@+id/fullName"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/numbg"
+                            android:fontFamily="sans-serif-light"
+                            android:hint="Full Name"
+                            android:inputType="textPersonName"
+                            android:padding="15dp"
+                            android:textColorHint="#c0c0c0"
+                            android:textCursorDrawable="@drawable/cursorcolor"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginRight="15dp"
+                            android:src="@drawable/mailiconsall"/>
+
+                        <EditText
+                            android:id="@+id/email"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/numbg"
+                            android:fontFamily="sans-serif-light"
+                            android:hint="Email Address"
+                            android:inputType="textEmailAddress"
+                            android:padding="15dp"
+                            android:textColorHint="#c0c0c0"
+                            android:textCursorDrawable="@drawable/cursorcolor"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/passwd_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
+                            android:src="@drawable/ic_lock_24px"/>
+
+                        <EditText
+                            android:id="@+id/password_edit_text"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/numbg"
+                            android:fontFamily="sans-serif-light"
+                            android:hint="Password"
+                            android:inputType="textPassword"
+                            android:padding="15dp"
+                            android:textColorHint="#c0c0c0"
+                            android:textCursorDrawable="@drawable/cursorcolor"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/passwd_re_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
+                            android:src="@drawable/ic_lock_24px"/>
+
+                        <EditText
+                            android:id="@+id/password_reenter_edit_text"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/numbg"
+                            android:fontFamily="sans-serif-light"
+                            android:hint="Retype Password"
+                            android:inputType="textPassword"
+                            android:padding="15dp"
+                            android:textColorHint="#c0c0c0"
+                            android:textCursorDrawable="@drawable/cursorcolor"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/phone_img"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="15dp"
+                            android:src="@drawable/ic_phone_24px"/>
+
+                        <EditText
+                            android:id="@+id/phone_edit_text"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/numbg"
+                            android:fontFamily="sans-serif-light"
+                            android:hint="Phone Number"
+                            android:inputType="phone"
+                            android:maxLength="10"
+                            android:padding="15dp"
+                            android:textColorHint="#c0c0c0"
+                            android:textCursorDrawable="@drawable/cursorcolor"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginRight="15dp"
+                            android:src="@drawable/courseicon"/>
+
+                        <LinearLayout
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <Spinner
+                                android:id="@+id/prof"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/numbg"
+                                android:padding="15dp"
+                                android:prompt="@string/cource"
+                                android:text="COURCE"
+                                android:textColorHint="@color/BibliosColorDark"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layout_clg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginRight="15dp"
+                            android:src="@drawable/clgiconsmall"/>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColorHint="@color/BibliosColorDark">
+
+                            <EditText
+                                android:id="@+id/collegeName"
+                                android:layout_width="250dp"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/numbg"
+                                android:fontFamily="sans-serif-light"
+                                android:hint="College Name"
+                                android:inputType="textPersonName"
+                                android:padding="15dp"
+                                android:textColorHint="#c0c0c0"
+                                android:textCursorDrawable="@drawable/cursorcolor"/>
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/spinner_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginRight="15dp"
+                            android:src="@drawable/courseicon"/>
+
+                        <LinearLayout
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <Spinner
+                                android:id="@+id/cource"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/numbg"
+                                android:padding="15dp"
+                                android:prompt="@string/cource"
+                                android:text="COURCE"
+                                android:textColorHint="@color/BibliosColorDark"/>
+
+                            <Spinner
+                                android:id="@+id/sem"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/numbg"
+                                android:padding="15dp"
+                                android:prompt="@string/sem"
+                                android:textColor="#673ab7"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/submitbtn"
+                        android:layout_width="270dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/btn_signup"
+                        android:fontFamily="sans-serif-light"
+                        android:padding="10dp"
+                        android:text="SUBMIT"
+                        android:textColor="@color/md_white"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/topicon"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/usericon"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="REGISTRATION"
+                android:textColor="#7e57c2"
+                android:textSize="17sp"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</ScrollView>
+

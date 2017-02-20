@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="horizontal">
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:layout_marginTop="45dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Name: "
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/account_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="@string/name"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+        <TextView
+            android:id="@+id/edit_ac_name"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:text="edit"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/BibliosColorDark"
+            android:textStyle="bold"/>
+    </TableRow>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dip"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:alpha="0.5"
+        android:background="#c0c0c0">
+
+    </View>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:layout_marginTop="45dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="ID: "
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/account_user_id"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="@string/id"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+    </TableRow>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dip"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:alpha="0.5"
+        android:background="#c0c0c0"/>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:layout_marginTop="45dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Contact No: "
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/account_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="@string/ph"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+        <TextView
+            android:id="@+id/edit_ac_phone"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:text="edit"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/BibliosColorDark"
+            android:textStyle="bold"/>
+    </TableRow>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dip"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:alpha="0.5"
+        android:background="#c0c0c0"/>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:layout_marginTop="45dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Email: "
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/account_email"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:text="@string/email"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+        <TextView
+            android:id="@+id/edit_ac_email"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:text="edit"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/BibliosColorDark"
+            android:textStyle="bold"/>
+    </TableRow>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dip"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:alpha="0.5"
+        android:background="#c0c0c0"/>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:layout_marginTop="45dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:text="Membership info"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/current_mem_status"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:gravity="left"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"/>
+
+        <TextView
+            android:id="@+id/edit_ac_membership"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:text="view"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/BibliosColorDark"
+            android:textStyle="bold"/>
+    </TableRow>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dip"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:alpha="0.5"
+        android:background="#c0c0c0"/>
+</TableLayout>

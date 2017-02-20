@@ -12,13 +12,13 @@ public class CartWishModel {
     private String categoryName;
     private String id;
     private String bisbn;
+    private int orderStatus;
     private int numberOfItems;
 
     public CartWishModel(String id, String categoryName) {
         this.id = id;
         this.categoryName = categoryName;
     }
-
     public CartWishModel() {
         //
     }
@@ -29,6 +29,13 @@ public class CartWishModel {
         this.bUrl = bookUrl;
     }
 
+    public int getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(int orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;

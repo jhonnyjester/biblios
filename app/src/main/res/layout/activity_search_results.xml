@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:id="@+id/activity_search_results"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.whattabiz.bibliosbookpoint.SearchResultsActivity">
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:indeterminate="true"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/search_result_books"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:id="@+id/empty_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/empty_search_img"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:src="@drawable/empty_search"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:fontFamily="sans-serif-light"
+                android:paddingTop="8dp"
+                android:text="No Books found by that msg!"
+                android:textAllCaps="true"
+                android:textSize="18sp"/>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

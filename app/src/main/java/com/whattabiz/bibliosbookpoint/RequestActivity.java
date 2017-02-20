@@ -97,12 +97,14 @@ public class RequestActivity extends AppCompatActivity {
         bAname = til_req_author.getEditText().getText().toString();
         bname = til_req_book.getEditText().getText().toString();
         bookCategory = til_req_categ.getEditText().getText().toString();
-        StringRequest request = new StringRequest(REQUEST_BOOK_URL + "?bname=" + bname
+        StringRequest request = new StringRequest(REQUEST_BOOK_URL + "&bname=" + bname
                 + "&author=" + bAname + "&user_id=" + uid + "&book_cat=" + bookCategory, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d("Response", response);
-                dialog.dismiss();
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                }
                 try {
                     JSONObject jsonObject = new JSONObject(response);
 
@@ -120,7 +122,9 @@ public class RequestActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("Error", error.getLocalizedMessage());
-                dialog.dismiss();
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                }
                 Toast.makeText(RequestActivity.this, "Some Error Occured, Please try Again Later!", Toast.LENGTH_SHORT).show();
             }
         });

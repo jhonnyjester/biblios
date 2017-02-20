@@ -1,0 +1,97 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="2dp"
+        android:clickable="false"
+        app:cardElevation="3dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/mainRelativeLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/book_img_view"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/book_placeholder"/>
+
+                <TextView
+                    android:id="@+id/bname_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/book_img_view"
+                    android:layout_marginTop="7dp"
+                    android:layout_toRightOf="@id/book_img_view"
+                    android:fontFamily="sans-serif-medium"
+                    android:maxLines="2"
+                    android:textColor="@android:color/primary_text_light"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/num_of_items"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/bname_tv"
+                    android:layout_toRightOf="@id/book_img_view"
+                    android:text="Test"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:id="@+id/bcost_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/num_of_items"
+                    android:layout_toRightOf="@id/book_img_view"
+                    android:textColor="#1D60AB"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/order_item_from_cart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/orderbtns"
+                    android:text="Order this"
+                    android:textColor="@android:color/primary_text_dark"/>
+
+                <Button
+                    android:id="@+id/cart_list_remove_now"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/remove_btn"
+                    android:fontFamily="sans-serif-lite"
+                    android:text="Remove"
+                    android:textColor="@android:color/primary_text_dark"
+                    android:textSize="15sp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

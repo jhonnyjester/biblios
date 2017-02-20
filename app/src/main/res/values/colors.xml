@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="BibliosColorPrimary">#5e35b1</color>
+    <color name="BibliosColorDark">#512da8</color>
+    <color name="BibliosColorAccent">#5e35b1</color>
+    <color name="BibliosRippleColor">#ca7046c2</color>
+    <color name="list_title_color">#000</color>
+    <color name="text_default_color">#fff</color>
+    <color name="orderButton">#2979ff</color>
+    <color name="orderBtnPressed">#82b1ff</color>
+    <color name="removeButton">#ef5350</color>
+    <color name="removeBtnPressed">#b71c1c</color>
+
+    <color name="colorPrimary">#5e35b1</color>
+    <color name="colorDark">#512da8</color>
+    <color name="colorAccent">#EEFF41</color>
+    <color name="md_grey_50">#FAFAFA</color>
+    <color name="md_white">#ffffff</color>
+    <color name="md_red_500">#f44336</color>
+</resources>

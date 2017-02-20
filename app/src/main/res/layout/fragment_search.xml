@@ -1,0 +1,18 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context="com.whattabiz.bibliosbookpoint.SearchFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:text="Search Results go here!!!!"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
+
+</LinearLayout>

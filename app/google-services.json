@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "231643910544",
+    "firebase_url": "https://biblios-e5e5b.firebaseio.com",
+    "project_id": "biblios-e5e5b",
+    "storage_bucket": "biblios-e5e5b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231643910544:android:4899f3a0eb1f2ec6",
+        "android_client_info": {
+          "package_name": "com.whattabiz.bibliosbookpoint"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "231643910544-unr20ojot2s089p09id32ku6r1lgihd3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9c8zQ2NRhZpqSngiYaQ4tqkfoN3It95A"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
