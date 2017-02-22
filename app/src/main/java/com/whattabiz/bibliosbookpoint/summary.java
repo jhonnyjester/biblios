@@ -69,42 +69,50 @@ public class summary extends AppCompatActivity implements PaymentChoiceListener 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            // handle toolbar back button click
-            cancelOrders();
+            onBackPressed();
+            return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+
+    /* Check if promo code applied and send cancel promo applied request */
     private void cancelOrders() {
-        if (appliedPromoCodeId == null || appliedPromoCodeId.isEmpty())
-            finish();
-        else {
-            // send that promo code wasnt applied
-            StringRequest promoCancel = new StringRequest(Request.Method.POST, PROMO_CANCEL, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    Log.d(TAG, response);
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(summary.this, "Some Error Occured!", Toast.LENGTH_SHORT).show();
-                }
-            }) {
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String, String> params = new HashMap<>();
-                    params.put("user_id", Store.user_id);
-                    params.put("promo_id", appliedPromoCodeId);
-                    return params;
-                }
-            };
-
-            MySingleton.getInstance(this).addToRequestQueue(promoCancel);
-
+        if (promoId == null || promoId.isEmpty()) {
+            Log.d(TAG, "Promo Code not applied");
             finish();
         }
+        Log.d(TAG, "Promo Code Applied");
+        // send that promo code wasnt applied
+        StringRequest promoCancel = new StringRequest(Request.Method.POST, PROMO_CANCEL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(summary.this, "Some Error Occured!", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", Store.user_id);
+                params.put("promo_id", promoId);
+                return params;
+            }
+        };
+
+        MySingleton.getInstance(this).addToRequestQueue(promoCancel);
+        finish();
+
     }
 
 
@@ -496,6 +504,7 @@ public class summary extends AppCompatActivity implements PaymentChoiceListener 
 
     @Override
     protected void onStop() {
+        // cancelOrders();
         super.onStop();
     }
 

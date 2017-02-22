@@ -189,7 +189,7 @@ public class PromoActivity extends AppCompatActivity implements OnPromoCodeAppli
     @Override
     public void OnPromoCodeApplied(String promoId, float percent) {
 
-        Toast.makeText(PromoActivity.this, "PROMO ID: " + promoId + "\nPercent: " + String.valueOf(percent), Toast.LENGTH_SHORT).show();
+        //     Toast.makeText(PromoActivity.this, "PROMO ID: " + promoId + "\nPercent: " + String.valueOf(percent), Toast.LENGTH_SHORT).show();
         Intent data = new Intent();
         data.putExtra("promo_id", promoId);
         data.putExtra("percent", percent);
