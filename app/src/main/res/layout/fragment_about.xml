@@ -1,66 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:scrollbars="none"
-            tools:context="com.whattabiz.bibliosbookpoint.AboutFragment">
+            android:fadeScrollbars="true">
 
-    <android.support.v7.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        app:cardElevation="2dp"
-        app:cardUseCompatPadding="true">
+        android:orientation="vertical"
+        tools:context="com.whattabiz.bibliosbookpoint.AboutFragment">
 
-        <RelativeLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="20dp">
+            android:layout_margin="5dp"
+            app:cardElevation="1dp"
+            app:cardUseCompatPadding="true">
 
-            <ImageView
-                android:id="@+id/whattabiz_logo"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:background="?android:attr/selectableItemBackground"
-                android:scaleType="centerInside"
-                android:src="@drawable/logo"/>
-
-            <TextView
-                android:id="@+id/textView"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/whattabiz_logo"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif-condensed"
-                android:gravity="fill_vertical"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:text="@string/whattabiz_about_header"
-                android:textColor="#e61b1b"
-                android:textSize="17sp"
-                android:textStyle="bold"/>
+                android:paddingBottom="20dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:fontFamily="sans-serif"
-                android:gravity="fill_vertical"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:text="@string/whattabiz"
-                android:textColor="#000000"
-                android:textSize="16sp"
-                android:textStyle="normal"/>
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
+                <ImageView
+                    android:id="@+id/whattabiz_logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/biblios_text"
+                    android:tint="@color/BibliosColorAccent"/>
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/whattabiz_logo"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif-condensed"
+                    android:gravity="fill_vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:text="@string/whattabiz_about_header"
+                    android:textColor="#e61b1b"
+                    android:textSize="17sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/about_biblios"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/textView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="fill_vertical"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:text="@string/about_biblios_description"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:textStyle="normal"/>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginEnd="115dp"
+            android:layout_marginStart="115dp"
+            android:layout_marginTop="15dp"
+            android:background="@android:color/darker_gray"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:text="Follow us on"
+            android:textColor="@color/BibliosColorDark"
+            android:textSize="18sp"/>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal">
+
+
+            <ImageButton
+                android:id="@+id/insta_btn"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/insta_logo"/>
+
+            <ImageButton
+                android:id="@+id/fb_btn"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/fb_logo"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 </ScrollView>

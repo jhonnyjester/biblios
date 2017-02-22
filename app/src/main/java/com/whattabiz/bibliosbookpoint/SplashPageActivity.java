@@ -67,25 +67,30 @@ public class SplashPageActivity extends AppCompatActivity {
     }
 
     private void doNext() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-
-        /* Check if network is available */
-        if (networkInfo != null && networkInfo.isConnectedOrConnecting()) {
+        if (isNetworkAvailable()) {
             if (isLoggedIn) {
                 startActivity(new Intent(SplashPageActivity.this, NavigationHomeActivity.class));
             } else {
                 startActivity(new Intent(SplashPageActivity.this, RegistrationActivity.class));
             }
         } else {
-            Toast.makeText(this, "Unable to Connect to the Internet! Please Try Again Later.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Unable to connect to the internet! Please try again.", Toast.LENGTH_LONG).show();
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     finish();
                 }
-            }, 1000);
+            }, 2000);
         }
+
     }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectionManager.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnectedOrConnecting();
+    }
+
+
 }

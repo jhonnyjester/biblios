@@ -31,9 +31,18 @@ class PromoCodeAdapter extends RecyclerView.Adapter<PromoCodeAdapter.MyViewHolde
     private Context mContext;
     private MaterialDialog materialDialog;
 
+    //  private ArrayList<String> appliedPromoCodes = new ArrayList<>();
+    /* Instance on OnPromoCodeAppliedListener */
+    private OnPromoCodeAppliedListener onPromoCodeAppliedListener;
+
     PromoCodeAdapter(List<PromoCode> promoCodeList, Context context) {
         this.promoCodeList = promoCodeList;
         this.mContext = context;
+    }
+
+    /* Setter for PromoCode Applied Listener */
+    public void setOnPromoCodeAppliedListener(OnPromoCodeAppliedListener listener) {
+        this.onPromoCodeAppliedListener = listener;
     }
 
     @Override
@@ -56,6 +65,7 @@ class PromoCodeAdapter extends RecyclerView.Adapter<PromoCodeAdapter.MyViewHolde
                 applyPromoCode(holder.getAdapterPosition());
             }
         });
+
     }
 
     private void applyPromoCode(final int position) {
@@ -82,7 +92,14 @@ class PromoCodeAdapter extends RecyclerView.Adapter<PromoCodeAdapter.MyViewHolde
                         float discountAmount = decimalOfPercent * Store.CURRENT_TOTAL;
                         Store.CURRENT_TOTAL = Store.CURRENT_TOTAL - discountAmount;
 
+                        Store.isPromoCodeApplied = true;
+                        Store.promoData.putExtra("promo_id", promoCodeList.get(position).getId());
+
                         Toast.makeText(mContext, "PromoCode Applied Successfully!", Toast.LENGTH_SHORT).show();
+
+                        if (onPromoCodeAppliedListener != null) {
+                            onPromoCodeAppliedListener.OnPromoCodeApplide(promoCodeList.get(position).getId());
+                        }
 
                         // remove the Applied Promo Code
                         removeAt(position);
@@ -114,7 +131,7 @@ class PromoCodeAdapter extends RecyclerView.Adapter<PromoCodeAdapter.MyViewHolde
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("key", Constants.BIBLIOS_KEY);
-                params.put("id", promoCodeList.get(position).getId());
+                params.put("promo_id", promoCodeList.get(position).getId());
                 params.put("user_id", Store.user_id);
                 return params;
             }
@@ -127,12 +144,20 @@ class PromoCodeAdapter extends RecyclerView.Adapter<PromoCodeAdapter.MyViewHolde
         promoCodeList.remove(pos);
         notifyItemRemoved(pos);
         notifyItemRangeChanged(pos, promoCodeList.size());
-    }
 
+        if (materialDialog.isShowing()) materialDialog.dismiss();
+    }
 
     @Override
     public int getItemCount() {
         return promoCodeList.size();
+    }
+
+
+    /* Create a Interface for handling PromoCode Applies */
+    public interface OnPromoCodeAppliedListener {
+        // Pass in the PromoCode id
+        void OnPromoCodeApplide(String promoId);
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -149,5 +174,3 @@ class PromoCodeAdapter extends RecyclerView.Adapter<PromoCodeAdapter.MyViewHolde
         }
     }
 }
-
-

@@ -9,6 +9,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -42,8 +43,8 @@ public class summary extends AppCompatActivity implements PaymentChoiceListener 
     private final String KEY = "WhattabizBiblios";
     /* Promo Request Code */
     private final int PROMO_REQUEST_CODE = 13;
+    private final String PROMO_CANCEL = "http://bibliosworld.com/Biblios/androidPromoCancel.php";
     private int sum;
-
     // TODO: Request Memership Percentage Discount
     private TextView total;
 
@@ -55,6 +56,50 @@ public class summary extends AppCompatActivity implements PaymentChoiceListener 
     private String DELIVERY_ADDRESS = "";
     /* Address Lines here */
     private TextInputLayout addressLine1, addressLine2, addressLine3;
+
+    private String appliedPromoCodeId = null;
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            // handle toolbar back button click
+            cancelOrders();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void cancelOrders() {
+        if (appliedPromoCodeId == null || appliedPromoCodeId.isEmpty())
+            finish();
+        else {
+            // send that promo code wasnt applied
+            StringRequest promoCancel = new StringRequest(Request.Method.POST, PROMO_CANCEL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.d(TAG, response);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(summary.this, "Some Error Occured!", Toast.LENGTH_SHORT).show();
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("user_id", Store.user_id);
+                    params.put("promo_id", appliedPromoCodeId);
+                    return params;
+                }
+            };
+
+            MySingleton.getInstance(this).addToRequestQueue(promoCancel);
+
+            finish();
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +142,7 @@ public class summary extends AppCompatActivity implements PaymentChoiceListener 
         cancleOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(summary.this, NavigationHomeActivity.class));
+                cancelOrders();
             }
         });
 
@@ -151,6 +196,31 @@ public class summary extends AppCompatActivity implements PaymentChoiceListener 
         });
     }
 
+    private void sendPromoId(final String promoId) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, PROMO_CANCEL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.i("PROMOCANCEL", response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(summary.this, "Some Error Occured", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("promo_id", promoId);
+                params.put("user_id", Store.user_id);
+                return params;
+            }
+        };
+
+        // add the request to queue
+        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -159,6 +229,17 @@ public class summary extends AppCompatActivity implements PaymentChoiceListener 
             /* If Activity called was successfully returned */
             if (resultCode == RESULT_OK) {
                 total.setText(String.valueOf(Math.round(Store.CURRENT_TOTAL)));
+
+                appliedPromoCodeId = data.getStringExtra("promo_id");
+
+                // check if promo code applied
+                if (Store.isPromoCodeApplied) {
+                    Store.isPromoCodeApplied = false;
+                    // if promo code applied, send the promo id to backend
+                    if (Store.promoData.getStringExtra("promo_id") != null) {
+                        sendPromoId(Store.promoData.getStringExtra("promo_id"));
+                    }
+                }
             }
         }
     }
@@ -375,7 +456,17 @@ public class summary extends AppCompatActivity implements PaymentChoiceListener 
 
     @Override
     public void onBackPressed() {
-        this.finish();
+        cancelOrders();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
     /**

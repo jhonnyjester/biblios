@@ -1,7 +1,10 @@
+
 package com.whattabiz.bibliosbookpoint;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -24,7 +27,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class PromoActivity extends AppCompatActivity {
     private final String PROMO_URL = "http://bibliosworld.com/Biblios/androidpromo.php";
@@ -37,6 +39,10 @@ public class PromoActivity extends AppCompatActivity {
     private String tempTotal;
 
     private List<PromoCode> promoCodeList = new ArrayList<>();
+
+    private String promoCodeAppliedId = null;
+
+    private PromoCodeAdapter promoCodeAdapter;
 
     //private Type type = new TypeToken<List<PromoCode>>(){}.getType();
 
@@ -59,34 +65,36 @@ public class PromoActivity extends AppCompatActivity {
         // set to visible initially
         progressBar.setVisibility(View.VISIBLE);
 
-        /*// if PromoCode codes is empty get the PromoCode codes
-        if (Store.PROMO_CODE_CODEs.isEmpty()) {
-            progressBar.setVisibility(View.VISIBLE);
-            recyclerView.setVisibility(GONE);
-            getThePromocodes();
-            instantiateList();
-        } else {
-            instantiateList();
-            progressBar.setVisibility(GONE);
-            recyclerView.setVisibility(View.VISIBLE);
-        }*/
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         createPromoList();
 
+        // Attach promo code listener to adapter
+        promoCodeAdapter.setOnPromoCodeAppliedListener(new PromoCodeAdapter.OnPromoCodeAppliedListener() {
+            @Override
+            public void OnPromoCodeApplide(String promoId) {
+                Toast.makeText(PromoActivity.this, "PROMO ID" + promoId, Toast.LENGTH_SHORT).show();
+                promoCodeAppliedId = promoId;
+            }
+        });
     }
 
     /**
      * Create a List of Promo Codes and Inflate via Recycler View
      * use LinearLayoutManager
-     *
      */
     private void createPromoList() {
         requestPromocodes();
         if (!promoCodeList.isEmpty() || promoCodeList != null) {
-            recyclerView.setAdapter(new PromoCodeAdapter(promoCodeList, this));
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            promoCodeAdapter = new PromoCodeAdapter(promoCodeList, this);
+            recyclerView.setAdapter(promoCodeAdapter);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            linearLayoutManager.setSmoothScrollbarEnabled(true);
+            recyclerView.setLayoutManager(linearLayoutManager);
             recyclerView.setHasFixedSize(true);
             recyclerView.setVisibility(View.VISIBLE);
+        } else {
+            Toast.makeText(this, "No Promo Codes Available", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -95,11 +103,7 @@ public class PromoActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Log.d(KEY, "Response: " + response);
-                if (Objects.equals(response, "[{}]") || response.contains("id")) {
-                    Toast.makeText(PromoActivity.this, "No PromoCodes Available at the moment!", Toast.LENGTH_SHORT).show();
-                } else {
-                    parseJson(response);
-                }
+                parseJson(response);
                 progressBar.setVisibility(View.GONE);
             }
         }, new Response.ErrorListener() {
@@ -117,42 +121,74 @@ public class PromoActivity extends AppCompatActivity {
             }
         };
 
+        /* Add the request to the queue */
         MySingleton.getInstance(this).addToRequestQueue(promoCodeRequest);
     }
 
     private void parseJson(String response) {
-        try {
-            JSONArray jsonArray = new JSONArray(response);
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObj = jsonArray.getJSONObject(i);
-                PromoCode promoCode = new PromoCode();
-                promoCode.setId(jsonObj.getString("id"));
-                promoCode.setMsg(jsonObj.getString("msg"));
-                promoCode.setPercentage(jsonObj.getString("percentage"));
-                promoCodeList.add(promoCode);
+        /* Check if the String is empty or not */
+        // Just in case if the JSON is empty
+        if (response.equals("[{}]")) {
+            Toast.makeText(this, "PromoCodes are not available!", Toast.LENGTH_SHORT).show();
+            setResult(RESULT_CANCELED);
+            finish();
+        } else {
+            /* Try to parse it into a JSON ARRAY of PromoCodes, this only happens if there are any promo codes */
+            try {
+                JSONArray jsonArray = new JSONArray(response);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObj = jsonArray.getJSONObject(i);
+                    PromoCode promoCode = new PromoCode();
+                    promoCode.setId(jsonObj.getString("id"));
+                    promoCode.setMsg(jsonObj.getString("msg"));
+                    promoCode.setPercentage(jsonObj.getString("percentage"));
+                    promoCodeList.add(promoCode);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
 
+            /* Try to parse the JSON for no promo codes, status:0 */
+            try {
+                JSONObject jsonObject = new JSONObject(response);
+                String status = jsonObject.getString("status");
+                // JUST in case
+                if (status.contains("0")) {
+                    Toast.makeText(this, "No Promo Codes available for you.", Toast.LENGTH_SHORT).show();
+                    setResult(RESULT_CANCELED);
+                    finish();
+                } else if (status.contains("1")) {
+                    JSONArray jsonArray = jsonObject.getJSONArray("promo_codes");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObj = jsonArray.getJSONObject(i);
+                        PromoCode promoCode = new PromoCode();
+                        promoCode.setId(jsonObj.getString("id"));
+                        promoCode.setMsg(jsonObj.getString("msg"));
+                        promoCode.setPercentage(jsonObj.getString("percentage"));
+                        promoCodeList.add(promoCode);
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        PromoActivity.this.finish();
-    }
-
-    @Override
-    public void finish() {
-        setResult(RESULT_OK);
-        super.finish();
+        Intent data = new Intent();
+        data.putExtra("promo_id", promoCodeAppliedId);
+        setResult(RESULT_OK, data);
+        finish();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        PromoActivity.this.finish();
+        //  if (item.getItemId() == android.R.id.home) {
+        onBackPressed();
+
         return super.onOptionsItemSelected(item);
     }
-}
 
+}

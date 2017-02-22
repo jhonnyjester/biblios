@@ -45,7 +45,7 @@ public class orderAdapter extends RecyclerView.Adapter<orderAdapter.MyViewHolder
         holder.name.setText(cartWishModelArrayList.get(holder.getAdapterPosition()).getBookname());
 
         /* Set the Delivery status */
-        holder.deliveryStatus.setText(cartWishModelArrayList.get(holder.getAdapterPosition()).getOrderStatus() == 1 ? "Delivered" : "Order Placed");
+        holder.deliveryStatus.setText(cartWishModelArrayList.get(holder.getAdapterPosition()).getOrderStatus());
 
         /* Set the Price */
         holder.price.setText(cartWishModelArrayList.get(holder.getAdapterPosition()).getCost());

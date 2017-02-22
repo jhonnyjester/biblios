@@ -83,7 +83,7 @@ public class MyOrdersFragment extends Fragment {
             String message = jsonObject.getString("message");
 
             /* Display the response message */
-            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+            //     Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
 
             if (status == 1) {
                 isOrdersEmpty = false;
@@ -133,7 +133,7 @@ public class MyOrdersFragment extends Fragment {
                     cartWishModel.setBookname(bookObj.getString("name"));
                     cartWishModel.setCost(bookObj.getString("value"));
                     cartWishModel.setbUrl(bookObj.getString("path"));
-                    cartWishModel.setOrderStatus(Integer.parseInt(bookObj.getString("order_status")));
+                    cartWishModel.setOrderStatus(bookObj.getString("order_status"));
 
                     // add this book model object to the list
                     list.add(cartWishModel);

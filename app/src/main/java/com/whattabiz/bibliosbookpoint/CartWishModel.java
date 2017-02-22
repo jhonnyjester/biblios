@@ -12,7 +12,7 @@ public class CartWishModel {
     private String categoryName;
     private String id;
     private String bisbn;
-    private int orderStatus;
+    private String orderStatus;
     private int numberOfItems;
 
     public CartWishModel(String id, String categoryName) {
@@ -29,11 +29,11 @@ public class CartWishModel {
         this.bUrl = bookUrl;
     }
 
-    public int getOrderStatus() {
+    public String getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(int orderStatus) {
+    public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
     }
 
