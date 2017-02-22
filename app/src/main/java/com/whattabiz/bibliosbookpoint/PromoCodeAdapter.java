@@ -97,12 +97,15 @@ class PromoCodeAdapter extends RecyclerView.Adapter<PromoCodeAdapter.MyViewHolde
 
                         Toast.makeText(mContext, "PromoCode Applied Successfully!", Toast.LENGTH_SHORT).show();
 
+                        // Invoke this Callback
                         if (onPromoCodeAppliedListener != null) {
-                            onPromoCodeAppliedListener.OnPromoCodeApplide(promoCodeList.get(position).getId());
+                            onPromoCodeAppliedListener.OnPromoCodeApplied(promoCodeList.get(position).getId(), percent);
                         }
 
                         // remove the Applied Promo Code
                         removeAt(position);
+
+
                     } else {
                         if (materialDialog.isShowing()) {
                             materialDialog.dismiss();
@@ -154,11 +157,6 @@ class PromoCodeAdapter extends RecyclerView.Adapter<PromoCodeAdapter.MyViewHolde
     }
 
 
-    /* Create a Interface for handling PromoCode Applies */
-    public interface OnPromoCodeAppliedListener {
-        // Pass in the PromoCode id
-        void OnPromoCodeApplide(String promoId);
-    }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 

@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -58,6 +59,12 @@ public class summary extends AppCompatActivity implements PaymentChoiceListener 
     private TextInputLayout addressLine1, addressLine2, addressLine3;
 
     private String appliedPromoCodeId = null;
+
+    /* Applied Promo Code Id */
+    private String promoId;
+
+    /* Promo Code Percentage */
+    private float percent;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -183,20 +190,33 @@ public class summary extends AppCompatActivity implements PaymentChoiceListener 
             }
         });
 
+        promoCode.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (!promoCode.isClickable()) {
+                    Toast.makeText(summary.this, "You have already applied a Promo Code!", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                return false;
+            }
+        });
+
         promoCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 /* Send the current Total price and calculate the discount amount from PromoCode codes and return back
                  * the Total amount and set it to the TotalAmount TextView */
                 Intent promoIntent = new Intent(summary.this, PromoActivity.class);
                 promoIntent.putExtra(TOTAL_AMOUNT_KEY, total.getText());
-                startActivity(promoIntent);
-                // startActivityForResult(promoIntent, PROMO_REQUEST_CODE);
+                //
+                startActivityForResult(promoIntent, PROMO_REQUEST_CODE);
             }
         });
     }
 
-    private void sendPromoId(final String promoId) {
+    private void cancelAppliedPromoCode(final String promoId) {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, PROMO_CANCEL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -228,20 +248,30 @@ public class summary extends AppCompatActivity implements PaymentChoiceListener 
         if (requestCode == PROMO_REQUEST_CODE) {
             /* If Activity called was successfully returned */
             if (resultCode == RESULT_OK) {
-                total.setText(String.valueOf(Math.round(Store.CURRENT_TOTAL)));
+                /* Get the promo data */
+                promoId = data.getStringExtra("promo_id");
+                percent = data.getFloatExtra("percent", (float) 1);
 
-                appliedPromoCodeId = data.getStringExtra("promo_id");
+                Log.i(TAG, "PromoDetails: " + "" +
+                        "\nId: " + promoId + "\n" + "Percent: " + percent);
 
-                // check if promo code applied
-                if (Store.isPromoCodeApplied) {
-                    Store.isPromoCodeApplied = false;
-                    // if promo code applied, send the promo id to backend
-                    if (Store.promoData.getStringExtra("promo_id") != null) {
-                        sendPromoId(Store.promoData.getStringExtra("promo_id"));
-                    }
-                }
+                /* set the promo code button clickable false */
+                promoCode.setClickable(false);
+
+                applyPromoCode();
             }
         }
+    }
+
+    /**
+     * Calculate the total checkout cost after applying promo code
+     */
+    private void applyPromoCode() {
+        float decimalOfPercent = percent / 100;
+        float discountAmount = decimalOfPercent * sum;
+        sum = (int) (sum - discountAmount);
+        Log.d(TAG, "SUM after promo code apply: " + sum);
+        total.setText(sum + "*");
     }
 
     // display a dialog of choices

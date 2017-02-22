@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PromoActivity extends AppCompatActivity {
+public class PromoActivity extends AppCompatActivity implements OnPromoCodeAppliedListener {
     private final String PROMO_URL = "http://bibliosworld.com/Biblios/androidpromo.php";
 
     private final String KEY = "PromoCodeActivity";
@@ -70,14 +70,9 @@ public class PromoActivity extends AppCompatActivity {
         createPromoList();
 
         // Attach promo code listener to adapter
-        promoCodeAdapter.setOnPromoCodeAppliedListener(new PromoCodeAdapter.OnPromoCodeAppliedListener() {
-            @Override
-            public void OnPromoCodeApplide(String promoId) {
-                Toast.makeText(PromoActivity.this, "PROMO ID" + promoId, Toast.LENGTH_SHORT).show();
-                promoCodeAppliedId = promoId;
-            }
-        });
+        promoCodeAdapter.setOnPromoCodeAppliedListener(this);
     }
+
 
     /**
      * Create a List of Promo Codes and Inflate via Recycler View
@@ -177,18 +172,28 @@ public class PromoActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent data = new Intent();
-        data.putExtra("promo_id", promoCodeAppliedId);
-        setResult(RESULT_OK, data);
+        setResult(RESULT_CANCELED);
         finish();
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        //  if (item.getItemId() == android.R.id.home) {
-        onBackPressed();
-
-        return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return false;
     }
 
+
+    @Override
+    public void OnPromoCodeApplied(String promoId, float percent) {
+
+        Toast.makeText(PromoActivity.this, "PROMO ID: " + promoId + "\nPercent: " + String.valueOf(percent), Toast.LENGTH_SHORT).show();
+        Intent data = new Intent();
+        data.putExtra("promo_id", promoId);
+        data.putExtra("percent", percent);
+        setResult(RESULT_OK, data);
+        finish();
+    }
 }
