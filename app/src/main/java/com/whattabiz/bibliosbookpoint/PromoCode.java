@@ -10,6 +10,7 @@ public class PromoCode {
     private String id;
     private String msg;
     private String percentage;
+    private int limit;
 
     public PromoCode() {
     }
@@ -18,6 +19,14 @@ public class PromoCode {
         this.id = id;
         this.msg = msg;
         this.percentage = percentage;
+    }
+
+    public int getLimit() {
+        return limit;
+    }
+
+    public void setLimit(int limit) {
+        this.limit = limit;
     }
 
     public String getPercentage() {

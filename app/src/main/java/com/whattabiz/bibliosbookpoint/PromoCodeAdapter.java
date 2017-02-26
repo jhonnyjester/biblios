@@ -27,6 +27,7 @@ import java.util.Map;
 
 class PromoCodeAdapter extends RecyclerView.Adapter<PromoCodeAdapter.MyViewHolder> {
     private final String KEY = "PromoAdapter";
+    private final float currentTotal;
     private List<PromoCode> promoCodeList;
     private Context mContext;
     private MaterialDialog materialDialog;
@@ -35,9 +36,10 @@ class PromoCodeAdapter extends RecyclerView.Adapter<PromoCodeAdapter.MyViewHolde
     /* Instance on OnPromoCodeAppliedListener */
     private OnPromoCodeAppliedListener onPromoCodeAppliedListener;
 
-    PromoCodeAdapter(List<PromoCode> promoCodeList, Context context) {
+    PromoCodeAdapter(List<PromoCode> promoCodeList, Context context, float currentTotal) {
         this.promoCodeList = promoCodeList;
         this.mContext = context;
+        this.currentTotal = currentTotal;
     }
 
     /* Setter for PromoCode Applied Listener */
@@ -54,7 +56,7 @@ class PromoCodeAdapter extends RecyclerView.Adapter<PromoCodeAdapter.MyViewHolde
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         holder.promoName.setText(promoCodeList.get(position).getMsg());
         holder.promoDiscount.setText(promoCodeList.get(position).getPercentage());
 
@@ -62,10 +64,16 @@ class PromoCodeAdapter extends RecyclerView.Adapter<PromoCodeAdapter.MyViewHolde
         holder.rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                applyPromoCode(holder.getAdapterPosition());
+                Log.i("PromoCodeAdapter", "CurrentTotal: " + currentTotal + "\n" +
+                        "Limit: " + promoCodeList.get(position).getLimit());
+                /* Check for limit before applying */
+                /* If the Current Order Total is greater than limit ==> apply the promo code */
+                if (currentTotal >= promoCodeList.get(position).getLimit())
+                    applyPromoCode(holder.getAdapterPosition());
+                else
+                    Toast.makeText(mContext, "Sorry! You cannot apply this Promo Code.", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     private void applyPromoCode(final int position) {
@@ -88,10 +96,10 @@ class PromoCodeAdapter extends RecyclerView.Adapter<PromoCodeAdapter.MyViewHolde
                     if (status == 1) {
                         // Keep it Clean ;-)
                         float percent = Float.parseFloat(promoCodeList.get(position).getPercentage());
-                        float decimalOfPercent = percent / 100;
+                       /* float decimalOfPercent = percent / 100;
                         float discountAmount = decimalOfPercent * Store.CURRENT_TOTAL;
                         Store.CURRENT_TOTAL = Store.CURRENT_TOTAL - discountAmount;
-
+*/
                         Store.isPromoCodeApplied = true;
                         Store.promoData.putExtra("promo_id", promoCodeList.get(position).getId());
 
@@ -155,7 +163,6 @@ class PromoCodeAdapter extends RecyclerView.Adapter<PromoCodeAdapter.MyViewHolde
     public int getItemCount() {
         return promoCodeList.size();
     }
-
 
 
     class MyViewHolder extends RecyclerView.ViewHolder {

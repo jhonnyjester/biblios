@@ -218,6 +218,7 @@ public class summary extends AppCompatActivity implements PaymentChoiceListener 
                  * the Total amount and set it to the TotalAmount TextView */
                 Intent promoIntent = new Intent(summary.this, PromoActivity.class);
                 promoIntent.putExtra(TOTAL_AMOUNT_KEY, total.getText());
+                promoIntent.putExtra("CURRENT_TOTAL", sum);
                 //
                 startActivityForResult(promoIntent, PROMO_REQUEST_CODE);
             }

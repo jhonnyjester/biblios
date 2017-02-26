@@ -44,6 +44,8 @@ public class PromoActivity extends AppCompatActivity implements OnPromoCodeAppli
 
     private PromoCodeAdapter promoCodeAdapter;
 
+    private int currentTotal;
+
     //private Type type = new TypeToken<List<PromoCode>>(){}.getType();
 
     @Override
@@ -61,6 +63,10 @@ public class PromoActivity extends AppCompatActivity implements OnPromoCodeAppli
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
 
         tempTotal = getIntent().getStringExtra(summary.TOTAL_AMOUNT_KEY);
+
+        if (getIntent().getExtras() != null) {
+            currentTotal = getIntent().getIntExtra("CURRENT_TOTAL", 1);
+        }
 
         // set to visible initially
         progressBar.setVisibility(View.VISIBLE);
@@ -81,7 +87,7 @@ public class PromoActivity extends AppCompatActivity implements OnPromoCodeAppli
     private void createPromoList() {
         requestPromocodes();
         if (!promoCodeList.isEmpty() || promoCodeList != null) {
-            promoCodeAdapter = new PromoCodeAdapter(promoCodeList, this);
+            promoCodeAdapter = new PromoCodeAdapter(promoCodeList, this, currentTotal);
             recyclerView.setAdapter(promoCodeAdapter);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
             linearLayoutManager.setSmoothScrollbarEnabled(true);
@@ -137,6 +143,8 @@ public class PromoActivity extends AppCompatActivity implements OnPromoCodeAppli
                     promoCode.setId(jsonObj.getString("id"));
                     promoCode.setMsg(jsonObj.getString("msg"));
                     promoCode.setPercentage(jsonObj.getString("percentage"));
+                    promoCode.setLimit(Integer.parseInt(jsonObj.getString("limit")));
+                    //  Log.d("PromoActivity", "Limit : " + jsonObj.getString("limit"));
                     promoCodeList.add(promoCode);
                 }
             } catch (JSONException e) {
@@ -160,6 +168,7 @@ public class PromoActivity extends AppCompatActivity implements OnPromoCodeAppli
                         promoCode.setId(jsonObj.getString("id"));
                         promoCode.setMsg(jsonObj.getString("msg"));
                         promoCode.setPercentage(jsonObj.getString("percentage"));
+                        promoCode.setLimit(Integer.parseInt(jsonObj.getString("limit")));
                         promoCodeList.add(promoCode);
                     }
                 }
