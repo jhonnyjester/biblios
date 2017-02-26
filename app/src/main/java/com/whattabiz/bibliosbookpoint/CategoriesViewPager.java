@@ -55,7 +55,6 @@ public class CategoriesViewPager extends AppCompatActivity implements AdapterVie
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(categoriesPager);
 
-
         /* Run these Asynchronously */
         AsyncTaskCompat.executeParallel(new AsyncTask<Void, Void, Void>() {
             @Override
@@ -146,7 +145,6 @@ public class CategoriesViewPager extends AppCompatActivity implements AdapterVie
                 CategoriesViewPager.this.finish();
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
